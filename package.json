@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/HermesWu/the-one/issues"
   },
-  "homepage": "https://github.com/HermesWu/the-one#readme"
+  "homepage": "https://github.com/HermesWu/the-one#readme",
+  "dependencies": {
+    "vue": "^2.5.17"
+  }
 }
