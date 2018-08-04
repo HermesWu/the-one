@@ -15,11 +15,18 @@
   "bugs": {
     "url": "https://github.com/HermesWu/the-one/issues"
   },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
+  },
   "homepage": "https://github.com/HermesWu/the-one#readme",
   "dependencies": {
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue-hot-reload-api": "^2.3.0"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.9.7"
+    "@vue/component-compiler-utils": "^2.1.0",
+    "node-sass": "^4.9.2",
+    "parcel-bundler": "^1.9.7",
+    "vue-template-compiler": "^2.5.17"
   }
 }
