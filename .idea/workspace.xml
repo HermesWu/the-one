@@ -54,9 +54,9 @@
           <entry key="gitignore" value="35" />
           <entry key="html" value="1448" />
           <entry key="js" value="1409" />
-          <entry key="json" value="29" />
+          <entry key="json" value="30" />
           <entry key="md" value="145" />
-          <entry key="txt" value="383" />
+          <entry key="txt" value="431" />
           <entry key="vue" value="1946" />
           <entry key="yml" value="231" />
         </counts>
@@ -64,10 +64,10 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="3394" />
-          <entry key="JSON" value="29" />
+          <entry key="JSON" value="30" />
           <entry key="JavaScript" value="1409" />
           <entry key="Markdown" value="145" />
-          <entry key="PLAIN_TEXT" value="418" />
+          <entry key="PLAIN_TEXT" value="466" />
           <entry key="YAML" value="231" />
         </counts>
       </usages-collector>
@@ -107,8 +107,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+            <state relative-caret-position="48">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -291,7 +291,7 @@
       <workItem from="1533437076866" duration="6727000" />
       <workItem from="1533542279805" duration="2756000" />
       <workItem from="1533785106067" duration="1294000" />
-      <workItem from="1533794677489" duration="2629000" />
+      <workItem from="1533794677489" duration="2819000" />
     </task>
     <task id="LOCAL-00001" summary="Complete Button.js">
       <created>1533274422275</created>
@@ -391,11 +391,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533800326350</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="MODIFY: 使用parcel打包index.js，将import转化为es5">
+      <created>1533804601554</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1533804601554</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29734000" />
+    <option name="totallyTimeSpent" value="29924000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -471,7 +478,8 @@
     <MESSAGE value="ADD: 接入 travis ci 持续测试" />
     <MESSAGE value="MODIFY: 修改.travis.yml" />
     <MESSAGE value="ADD: 添加index.js ，修改version为0.01" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADD: 添加index.js ，修改version为0.01" />
+    <MESSAGE value="MODIFY: 使用parcel打包index.js，将import转化为es5" />
+    <option name="LAST_COMMIT_MESSAGE" value="MODIFY: 使用parcel打包index.js，将import转化为es5" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/button.js" />
@@ -579,8 +587,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        <state relative-caret-position="48">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
         </state>
       </provider>
     </entry>
