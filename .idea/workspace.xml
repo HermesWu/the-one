@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9ea9cc4-a35d-4877-9aa4-e09e174bf448" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/input.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/input.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/the-one.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/the-one.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,7 +34,7 @@
           <entry key="html" value="6" />
           <entry key="js" value="11" />
           <entry key="json" value="3" />
-          <entry key="md" value="4" />
+          <entry key="md" value="5" />
           <entry key="vue" value="8" />
           <entry key="yml" value="1" />
         </counts>
@@ -48,7 +44,7 @@
           <entry key="HTML" value="14" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="11" />
-          <entry key="Markdown" value="4" />
+          <entry key="Markdown" value="5" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="YAML" value="1" />
         </counts>
@@ -59,8 +55,8 @@
           <entry key="html" value="1469" />
           <entry key="js" value="1470" />
           <entry key="json" value="30" />
-          <entry key="md" value="145" />
-          <entry key="txt" value="457" />
+          <entry key="md" value="626" />
+          <entry key="txt" value="474" />
           <entry key="vue" value="2433" />
           <entry key="yml" value="231" />
         </counts>
@@ -70,8 +66,8 @@
           <entry key="HTML" value="3902" />
           <entry key="JSON" value="30" />
           <entry key="JavaScript" value="1470" />
-          <entry key="Markdown" value="145" />
-          <entry key="PLAIN_TEXT" value="492" />
+          <entry key="Markdown" value="626" />
+          <entry key="PLAIN_TEXT" value="509" />
           <entry key="YAML" value="231" />
         </counts>
       </usages-collector>
@@ -79,11 +75,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="72">
+                <caret line="2" column="123" selection-start-line="2" selection-start-column="123" selection-end-line="2" selection-end-column="123" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1091">
-              <caret line="46" column="25" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+            <state relative-caret-position="1163">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -114,7 +122,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/input.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="504">
@@ -137,18 +145,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="384">
               <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -182,7 +178,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/button.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/Button.vue" />
@@ -197,6 +192,7 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/test/input.test.js" />
         <option value="$PROJECT_DIR$/src/input.vue" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -290,7 +286,7 @@
       <workItem from="1533437076866" duration="6727000" />
       <workItem from="1533542279805" duration="2756000" />
       <workItem from="1533785106067" duration="1294000" />
-      <workItem from="1533794677489" duration="10769000" />
+      <workItem from="1533794677489" duration="12915000" />
     </task>
     <task id="LOCAL-00001" summary="Complete Button.js">
       <created>1533274422275</created>
@@ -404,11 +400,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533810715012</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="ADD:添加input及测试">
+      <created>1534131259656</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1534131259656</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37874000" />
+    <option name="totallyTimeSpent" value="40020000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -486,7 +489,8 @@
     <MESSAGE value="ADD: 添加index.js ，修改version为0.01" />
     <MESSAGE value="MODIFY: 使用parcel打包index.js，将import转化为es5" />
     <MESSAGE value="MODIFY: 调整version为0.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="MODIFY: 调整version为0.2" />
+    <MESSAGE value="ADD:添加input及测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD:添加input及测试" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/button.js" />
@@ -523,16 +527,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="384">
-            <caret line="16" selection-start-line="16" selection-end-line="16" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -557,13 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="2" column="14" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1091">
-          <caret line="46" column="25" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -608,6 +595,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1163">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="72">
+            <caret line="2" column="123" selection-start-line="2" selection-start-column="123" selection-end-line="2" selection-end-column="123" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
