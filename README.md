@@ -50,10 +50,6 @@ npm i --s the-onen
         }
     }
 ```
-4. 引入 svg symbols
-```
-    <script src="//at.alicdn.com/t/font_777631_exaady83iqs.js"></script>
-```
 
 
 ## 文档
@@ -68,14 +64,7 @@ npm i --s the-onen
 ### 作者
 
     Daniel Wu
-    
-### 安装
 
-使用本框架前，请在CSS中开启 border-box
-
-```
-*{ box-sizing: border-box;}
-```
 
     
    

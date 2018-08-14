@@ -29,7 +29,7 @@
         }
     }
 </script>
-<style type="text/scss" lang="scss">
+<style type="text/scss" lang="scss" scoped>
     @keyframes spin{
         0% {transform: rotate(0deg)}
         100% {transform: rotate(360deg)}
