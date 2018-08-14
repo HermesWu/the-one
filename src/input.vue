@@ -1,7 +1,10 @@
 <template>
     <div class="wrapper" :class="{'error':error}">
-        <input type="text" :value="value" :disabled="disabled"
-            :readonly="readonly"
+        <input type="text" :value="value" :disabled="disabled" :readonly="readonly"
+               @change="$emit('change', $event.target.value)"
+               @input="$emit('input', $event.target.value)"
+               @focus="$emit('focus', $event.target.value)"
+               @blur="$emit('blur', $event.target.value)"
         >
         <template v-if="error">
             <icon name="error" class="errorIcon"></icon>
@@ -9,28 +12,10 @@
         </template>
 
     </div>
-    <!--<div>-->
-        <!--<input type="text" :disabled="disabled"-->
-               <!--@change="$emit('change', $event.target.value)"-->
-               <!--@input="$emit('input', $event.target.value)"-->
-               <!--@focus="$emit('focus', $event.target.value)"-->
-               <!--@blur="$emit('blur', $event.target.value)"-->
-               <!--:readonly="readonly"-->
-               <!--:value="value">-->
-        <!--<span class="errorMessage"><svg ><use :xlink:href="'#i-error'"></use></svg>{{error}}</span>-->
-    <!--</div>-->
-
 </template>
 <script>
     import Icon from './icon'
     export default{
-        // props:{
-        //     value: '',
-        //     disabled: false,
-        //     readonly: true,
-        //     error: '',
-        //     args:{}
-        // }
         components: {Icon},
         props: {
             value:{
