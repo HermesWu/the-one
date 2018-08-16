@@ -1,9 +1,6 @@
 <template>
-    <div class="col" :class="colClass"
-        :style="colStyle">
-        <div style="border: 1px solid blue">
-            <slot></slot>
-        </div>
+    <div class="col" :class="colClass" :style="colStyle">
+        <slot></slot>
 
     </div>
 </template>
@@ -26,7 +23,10 @@
         computed:{
             colClass(){
                 let {span, offset} = this
-                return [span && `col-${span}`, offset && `offset-${offset}`]
+                return [
+                    span && `col-${span}`,
+                    offset && `offset-${offset}`
+                ]
             },
             colStyle(){
                 return{
@@ -55,6 +55,5 @@
                 margin-right: ($n/24)*100%;
             }
         }
-
     }
 </style>
