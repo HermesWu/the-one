@@ -26,7 +26,7 @@
             },
             rowClass(){
                 let {align} = this
-                return [`align-${align}`]
+                return [align && `align-${align}`]
             }
 
         },
@@ -49,9 +49,7 @@
         }
         &.align-right{
             justify-content: flex-end;
-            > .col{
-                width: auto;
-            }
+
         }
     }
 

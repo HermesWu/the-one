@@ -37,13 +37,19 @@
 <body>
 <div id="app">
     <g-row gutter="20" align="left">
-        <g-col span="2">1</g-col>
-        <g-col span="22">
-            <g-row align="right">
-                <g-col>2</g-col>
-                <g-col>3</g-col>
-                <g-col>4</g-col>
-            </g-row>
+        <g-col span="24"
+            :ipad="{span:10}"
+            :narrow-pc="{span:8}"
+            :pc="{span:6}"
+            :wide-pc="{span:4}">
+            1
+        </g-col>
+        <g-col span="24"
+            :ipad="{span: 14}"
+            :narrow-pc="{span: 16}"
+            :pc="{span: 18}"
+            :wide-pc="{span:20}">
+            234
         </g-col>
 
     </g-row>
