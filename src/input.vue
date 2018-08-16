@@ -16,6 +16,7 @@
 <script>
     import Icon from './icon'
     export default{
+        name: 'TheOnenInput',
         components: {Icon},
         props: {
             value:{
