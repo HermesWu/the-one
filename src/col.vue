@@ -34,17 +34,31 @@
             pc: {type: Object, validator},
             widePc: {type: Object, validator}
         },
+        methods:{
+            createClasses(obj, str = ''){
+                let array = []
+                if(obj.span){
+                    array.push(`col-${str}${obj.span}`)
+                }
+                if(obj.offset){
+                    array.push(`col-${str}${obj.offset}`)
+                }
+                return array
+            }
+        },
         computed:{
             colClass(){
                 let {span, offset, ipad, narrowPc, pc, widePc} = this
+                let {createClasses} = this
                 return [
+                    // ...x(span, ''),
+                    // ...x(offset, ''),
                     span && `col-${span}`,
                     offset && `offset-${offset}`,
-                    ...(ipad ? [`col-ipad-${ipad.span}`]: []),
-                    ...(narrowPc ? [`col-narrow-pc-${narrowPc.span}`]: []),
-                    ...(pc ? [`col-pc-${pc.span}`]: []),
-                    ...(widePc ? [`col-wide-pc-${widePc.span}`]: [])
-
+                    ...createClasses(ipad, 'ipad-'),
+                    ...createClasses(narrowPc, 'narrow-pc-'),
+                    ...createClasses(pc, 'pc-'),
+                    ...createClasses(widePc, 'wide-pc-')
                 ]
             },
             colStyle(){
@@ -59,8 +73,7 @@
 <style type="text/scss" lang="scss" scoped>
     .col{
         width: 50%;
-        height: 40px;
-        border: 1px solid red;
+
         $class-prefix: col-;
         @for $n from 1 through 24 {
             &.#{$class-prefix}#{$n}{
@@ -74,7 +87,7 @@
                 margin-right: ($n/24)*100%;
             }
         }
-        @media (min-width: 577px) and (max-width: 768px) {
+        @media (min-width: 577px) {
             $class-prefix: col-ipad-;
             @for $n from 1 through 24 {
                 &.#{$class-prefix}#{$n}{
@@ -89,7 +102,7 @@
                 }
             }
         }
-        @media (min-width: 769px) and (max-width: 992px) {
+        @media (min-width: 769px) {
             $class-prefix: col-narrow-pc-;
             @for $n from 1 through 24 {
                 &.#{$class-prefix}#{$n}{
@@ -104,7 +117,7 @@
                 }
             }
         }
-        @media (min-width: 993px) and (max-width: 1200px) {
+        @media (min-width: 993px) {
             $class-prefix: col-pc-;
             @for $n from 1 through 24 {
                 &.#{$class-prefix}#{$n}{
