@@ -68,6 +68,7 @@ describe('Row', () => {
           }).$mount(div)
           const row = vm.$el
           expect(getComputedStyle(row).justifyContent).to.eq('flex-start')
+            div.remove()
           vm.$destroy()
         })
     })
