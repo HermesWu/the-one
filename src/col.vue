@@ -37,6 +37,7 @@
         methods:{
             createClasses(obj, str = ''){
                 let array = []
+                if(!obj){ return []}
                 if(obj.span){
                     array.push(`col-${str}${obj.span}`)
                 }
