@@ -6,6 +6,10 @@
 
 这是我做的一个Vue的UI框架，希望对你有用
 
+### 作者
+
+    吴晴
+
 ## 开始使用
 
 1. 添加CSS样式
@@ -18,7 +22,7 @@
 你还需要设置默认颜色等变量（后续会改为SCSS）
 
 ```
-:root {
+:root { // html
     --button-height: 32px;
     --font-size: 14px;
     --button-bg: white;
@@ -60,10 +64,10 @@ npm i --s the-onen
 
 ## 联系方式
 
-## 贡献代码
-### 作者
+ - QQ: 1136025519
 
-    Daniel Wu
+## 贡献代码
+
 
 
     
