@@ -50,53 +50,57 @@
         <g-footer class="demo">footer</g-footer>
     </g-layout>
     </div>
-    <div style="margin: 0 30px; border: 1px solid black;"></div>
-    <g-row  align="left">
-        <g-col span="24"
-            :ipad="{span:12, offset:3}"
-            :narrow-pc="{span:8}"
-            :pc="{span:6}"
-            :wide-pc="{span:4}">
-            <div class="demo"></div>
-        </g-col>
-        <g-col span="24"
-            :ipad="{span:12}"
-            :narrow-pc="{span:8}"
-            :pc="{span:6}"
-            :wide-pc="{span:4}">
-            <div class="demo"></div>
-        </g-col>
-        <g-col span="24"
-            :ipad="{span:12}"
-            :narrow-pc="{span:8}"
-            :pc="{span:6}"
-            :wide-pc="{span:4}">
-            <div class="demo"></div>
-        </g-col>
-        <g-col span="24"
-            :ipad="{span:12}"
-            :narrow-pc="{span:8}"
-            :pc="{span:6}"
-            :wide-pc="{span:4}">
-            <div class="demo"></div>
-        </g-col>
-        <g-col span="24"
-            :ipad="{span:12}"
-            :narrow-pc="{span:8}"
-            :pc="{span:6}"
-            :wide-pc="{span:4}">
-            <div class="demo"></div>
-        </g-col>
-        <g-col span="24"
-            :ipad="{span:12}"
-            :narrow-pc="{span:8}"
-            :pc="{span:6}"
-            :wide-pc="{span:4}">
-            <div class="demo"></div>
-        </g-col>
+    <div style=" border: 1px solid black;">
+        <!--<g-row gutter="20" >-->
+            <!--<g-col span="2">1</g-col>-->
+            <!--<g-col span="20" offset="2">2</g-col>-->
+        <!--</g-row>-->
+        <g-row >
+            <g-col span="24"
+                   :ipad="{span:12, offset:3}"
+                   :narrow-pc="{span:8}"
+                   :pc="{span:6}"
+                   :wide-pc="{span:4}">
+                <div class="demo"></div>
+            </g-col>
+            <g-col span="24"
+                   :ipad="{span:12}"
+                   :narrow-pc="{span:8}"
+                   :pc="{span:6}"
+                   :wide-pc="{span:4}">
+                <div class="demo"></div>
+            </g-col>
+            <g-col span="24"
+                   :ipad="{span:12}"
+                   :narrow-pc="{span:8}"
+                   :pc="{span:6}"
+                   :wide-pc="{span:4}">
+                <div class="demo"></div>
+            </g-col>
+            <g-col span="24"
+                   :ipad="{span:12}"
+                   :narrow-pc="{span:8}"
+                   :pc="{span:6}"
+                   :wide-pc="{span:4}">
+                <div class="demo"></div>
+            </g-col>
+            <g-col span="24"
+                   :ipad="{span:12}"
+                   :narrow-pc="{span:8}"
+                   :pc="{span:6}"
+                   :wide-pc="{span:4}">
+                <div class="demo"></div>
+            </g-col>
+            <g-col span="24"
+                   :ipad="{span:12}"
+                   :narrow-pc="{span:8}"
+                   :pc="{span:6}"
+                   :wide-pc="{span:4}">
+                <div class="demo"></div>
+            </g-col>
+        </g-row>
+    </div>
 
-
-    </g-row>
     <g-input value="张三" :disabled="true"></g-input>
     <g-input value="李四" :readonly="true"></g-input>
     <g-input value="王五" error="error" @change="inputChange"></g-input>
