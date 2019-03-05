@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <slot></slot>企业账户
+        <slot></slot>
     </div>
 </template>
 
