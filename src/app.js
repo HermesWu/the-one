@@ -10,6 +10,7 @@ import Sider from './sider'
 import Content from './content'
 import Header from './header'
 import Footer from './footer'
+import Plugin from './plugin'
 
 import chai from 'chai'
 import spies from 'chai-spies'
@@ -25,6 +26,7 @@ Vue.component('g-sider', Sider)
 Vue.component('g-content', Content)
 Vue.component('g-header', Header)
 Vue.component('g-footer', Footer)
+Vue.use(Plugin)
 
 chai.use(spies)
 
@@ -37,7 +39,24 @@ new Vue({
         loading2: true,
         loading3: false
     },
+    created(){
+    },
     methods:{
+        showToast(){
+            this.$toast('当前功能不稳定， 如果遇到 bug 请关闭该功能,当前功能不稳定， 如果遇到 bug 请关闭该功能当前功能不稳定， 如果遇到 bug 请关闭该功能当前功能不稳定， 如果遇到 bug 请关闭该功能, 完',
+                {
+                    enableHtml: false,
+                    closeButton:{
+                        text: '知道了',
+                        callback: (toast) => {
+                            toast.log()
+                            console.log('用户关闭了 toast')
+                        }
+                    }
+
+                }
+            )
+        },
         inputChange(e){
             console.log(e.target.value)
         }
