@@ -1,13 +1,15 @@
 <template>
-    <div class="toast" ref="wrapper">
-        <div class="message">
-            <slot v-if="!enableHtml"></slot>
-            <div v-else v-html="$slots.default[0]"></div>
-        </div>
-        <div class="line" ref="line"></div>
-        <span class="close" v-if="closeButton" @click="onClickClose">
+    <div class="wrapper" :class="toastClass">
+        <div class="toast" ref="toast">
+            <div class="message">
+                <slot v-if="!enableHtml"></slot>
+                <div v-else v-html="$slots.default[0]"></div>
+            </div>
+            <div class="line" ref="line"></div>
+            <span class="close" v-if="closeButton" @click="onClickClose">
             {{ closeButton.text }}
         </span>
+        </div>
     </div>
 </template>
 <script>
@@ -35,6 +37,18 @@
             enableHtml:{
                 type: Boolean,
                 default: false
+            },
+            position:{
+                type: String,
+                default: 'top',
+                validator(value){
+                    return ['top', 'middle', 'bottom'].indexOf(value) >= 0
+                }
+            }
+        },
+        computed:{
+            toastClass(){
+                return {[`position-${this.position}`]: true}
             }
         },
         methods:{
@@ -47,7 +61,7 @@
             },
             updateStyles(){
               this.$nextTick(()=>{
-                  this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height + 'px'
+                  this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
               })
             },
             close(){
@@ -74,29 +88,41 @@
     $font-size: 14px;
     $toast-min-height: 40px;
     $toast-bg: rgba(0, 0, 0, 0.75);
-    .toast{
-        font-size: $font-size;
-        min-height: $toast-min-height;
-        background: $toast-bg;
-        color: white;
-        display:flex;
-        align-items: center;
-        padding: 0 16px;
-        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.50);
+    .wrapper{
         position: fixed;
-        top: 0;
         left: 50%;
-        transform: translateX(-50%);
-        .message{
-            padding: 8px 0;
+        &.position-top{
+            top: 0;
+            transform: translateX(-50%);
         }
-        .close{
-            padding-left: 16px;
-            flex-shrink: 0;
+        &.position-bottom{
+            bottom: 0;
+            transform: translateX(-50%)
         }
-        .line{
-            border-left: 1px solid #666;
-            margin-left: 16px;
+        &.position-middle{
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .toast{
+            font-size: $font-size;
+            min-height: $toast-min-height;
+            background: $toast-bg;
+            color: white;
+            display:flex;
+            align-items: center;
+            padding: 0 16px;
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.50);
+            .message{
+                padding: 8px 0;
+            }
+            .close{
+                padding-left: 16px;
+                flex-shrink: 0;
+            }
+            .line{
+                border-left: 1px solid #666;
+                margin-left: 16px;
+            }
         }
     }
 </style>

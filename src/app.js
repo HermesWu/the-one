@@ -43,8 +43,9 @@ new Vue({
     },
     methods:{
         showToast(){
-            this.$toast('当前功能不稳定， 如果遇到 bug 请关闭该功能,当前功能不稳定， 如果遇到 bug 请关闭该功能当前功能不稳定， 如果遇到 bug 请关闭该功能当前功能不稳定， 如果遇到 bug 请关闭该功能, 完',
+            this.$toast(`你的智商值为${parseInt(Math.random()*100)}, 你的智商需要充值！`,
                 {
+                    position: 'middle',
                     enableHtml: false,
                     closeButton:{
                         text: '知道了',
