@@ -44,7 +44,6 @@ describe('Row', () => {
             const vm = new Vue({
                 el: div
             })
-            console.log(vm.$el)
             setTimeout(()=>{
                 const rowElement = vm.$el.querySelector('.row')
                 expect(getComputedStyle(rowElement).marginRight).to.eq('-10px')
