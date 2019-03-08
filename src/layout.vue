@@ -15,7 +15,7 @@
         },
         mounted () {
             this.$children.forEach((vm) => {
-                if (vm.$options.name === 'GuluSider') {
+                if (vm.$options.name === 'TheOnenSider') {
                     this.layoutClass.hasSider = true
                 }
             })

@@ -11,6 +11,11 @@ import Content from './content'
 import Header from './header'
 import Footer from './footer'
 import Plugin from './plugin'
+import Tabs from './tabs'
+import TabsHead from './tabs-head'
+import TabsBody from './tabs-body'
+import TabsItem from './tabs-item'
+import TabsPane from './tabs-pane'
 
 import chai from 'chai'
 import spies from 'chai-spies'
@@ -26,6 +31,12 @@ Vue.component('g-sider', Sider)
 Vue.component('g-content', Content)
 Vue.component('g-header', Header)
 Vue.component('g-footer', Footer)
+Vue.component('g-tabs', Tabs)
+Vue.component('g-tabs-head', TabsHead)
+Vue.component('g-tabs-body', TabsBody)
+Vue.component('g-tabs-item', TabsItem)
+Vue.component('g-tabs-pane', TabsPane)
+
 Vue.use(Plugin)
 
 chai.use(spies)
@@ -37,9 +48,11 @@ new Vue({
     data:{
         loading1: false,
         loading2: true,
-        loading3: false
+        loading3: false,
+        selectedTab: 'sports'
     },
     created(){
+        // 触发 this.$emit('update:selected')
     },
     methods:{
         showToast(s){
