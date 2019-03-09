@@ -10,14 +10,12 @@
         name: 'TheOnenTabs',
         data() {
             return {
-
                 eventBus: new Vue()
             }
         },
         provide() {
             return {
                 eventBus: this.eventBus
-
             }
         },
         props: {
@@ -32,6 +30,18 @@
                     return ['horizontal', 'vertical'].indexOf(value) >= 0
                 }
             }
+        },
+        mounted(){
+            this.$children.forEach(vm=>{
+                if(vm.$options.name === 'TheOnenTabsHead'){
+                    vm.$children.forEach(childVm=>{
+                        if(childVm.$options.name==='TheOnenTabsItem'&&childVm.name===this.selected){
+                            this.eventBus.$emit('update:selected', this.selected, childVm)
+                        }
+                    })
+                }
+            })
+
         }
     }
 </script>
