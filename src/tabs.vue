@@ -4,18 +4,32 @@
     </div>
 </template>
 <script>
-    export default{
+    import Vue from 'vue'
+
+    export default {
         name: 'TheOnenTabs',
-        props:{
-            selected:{
+        data() {
+            return {
+
+                eventBus: new Vue()
+            }
+        },
+        provide() {
+            return {
+                eventBus: this.eventBus
+
+            }
+        },
+        props: {
+            selected: {
                 type: String,
                 required: true
             },
             direction: {
                 type: String,
                 default: 'horizontal',
-                validator(value){
-                    return ['horizontal', 'vertical'].indexOf(value)>=0
+                validator(value) {
+                    return ['horizontal', 'vertical'].indexOf(value) >= 0
                 }
             }
         }

@@ -23,7 +23,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" type="text/scss" scoped>
     .layout {
         flex-grow: 1;
         display: flex;
