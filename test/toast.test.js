@@ -60,7 +60,6 @@ describe('Toast', () => {
                     position: 'bottom'
                 }
             }).$mount()
-            console.log(vm.$el.outerHTML);
             expect(vm.$el.classList.contains('position-bottom')).to.eq(true)
         })
     })

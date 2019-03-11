@@ -23,10 +23,10 @@
         created(){
             this.eventBus.$on('update:selected', (name)=>{
                 if(name === this.name){
-                    console.log(`pane 我被选中了 ${this.name}`)
+
                     this.active = true
                 }else{
-                    console.log(` pane我没有被选中 ${this.name}`)
+
                     this.active = false
                 }
             })

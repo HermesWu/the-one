@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="clicked" :class="classes">
+    <div class="tabs-item" @click="clicked" :class="classes" :data-name="name">
         <g-icon class="center" name="settings"></g-icon>
         <slot></slot>
     </div>
@@ -24,14 +24,18 @@
             }
         },
         mounted(){
-            this.eventBus.$on('update:selected', (name, vm)=>{
-                this.active = name === this.name;
-            })
+            if(this.eventBus){
+                this.eventBus.$on('update:selected', (name, vm)=>{
+                    this.active = name === this.name;
+                })
+            }
         },
         methods: {
             clicked(){
                 if(this.disabled){return}
-                this.eventBus.$emit('update:selected', this.name, this)
+                this.eventBus&&this.eventBus.$emit('update:selected', this.name, this)
+                this.$emit('click', this)
+
             }
         },
         computed:{
@@ -59,6 +63,7 @@
         }
         &.disabled{
             color: gray;
+            cursor: not-allowed;
         }
         > .center{
             vertical-align:middle;
