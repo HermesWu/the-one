@@ -27,7 +27,7 @@ describe('TabsItem', () => {
             const vm = new Constructor({
                 propsData:{
                     disabled: true,
-                    name: 'x'
+                    name: 'onClick'
                 }
             }).$mount()
             console.log(vm.$el.outerHTML);

@@ -31,20 +31,27 @@
                 }
             }
         },
-        mounted(){
-            if(this.$children.length === 0){
-                console&&console.warn&&console.warn('tabs 的子组件应该是tabs-head 和 tabs-body')
-            }
-            this.$children.forEach(vm=>{
-                if(vm.$options.name === 'TheOnenTabsHead'){
-                    vm.$children.forEach(childVm=>{
-                        if(childVm.$options.name==='TheOnenTabsItem'&&childVm.name===this.selected){
-                            this.eventBus&&this.eventBus.$emit('update:selected', this.selected, childVm)
-                        }
-                    })
+        methods:{
+            checkChildren(){
+                if(this.$children.length === 0){
+                    console&&console.warn&&console.warn('tabs 的子组件应该是tabs-head 和 tabs-body')
                 }
-            })
-
+            },
+            selectTab(){
+                this.$children.forEach(vm=>{
+                    if(vm.$options.name === 'TheOnenTabsHead'){
+                        vm.$children.forEach(childVm=>{
+                            if(childVm.$options.name==='TheOnenTabsItem'&&childVm.name===this.selected){
+                                this.eventBus&&this.eventBus.$emit('update:selected', this.selected, childVm)
+                            }
+                        })
+                    }
+                })
+            }
+        },
+        mounted(){
+            this.checkChildren()
+            this.selectTab()
         }
     }
 </script>
