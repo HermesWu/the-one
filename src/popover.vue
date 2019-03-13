@@ -1,7 +1,7 @@
 <template>
-    <div class="popover" @click="onClick" >
+    <div class="popover" ref="popover">
         <div ref="contentWrapper" v-if="visible" class="content-wrapper" :class="[`position-${position}`]">
-            <slot name="content" ></slot>
+            <slot name="content" :close="close"></slot>
         </div>
         <span class="trigger-wrapper" ref="triggerWrapper">
             <slot></slot>
@@ -23,14 +23,40 @@
               validator(value){
                   return ['top', 'bottom', 'right', 'left'].indexOf(value) >=0
               }
-          }
+          },
+            trigger:{
+                type: String,
+                default: 'click',
+                validator(value){
+                    return ['click', 'hover'].indexOf(value)>=0
+                }
+            }
+        },
+        mounted(){
+            let {popover} = this.$refs
+            if(this.trigger === 'click'){
+                popover.addEventListener('click', this.onClick)
+            }else{
+                popover.addEventListener('mouseenter', this.open)
+                popover.addEventListener('mouseleave', this.close)
+            }
+        },
+        destroy(){
+            let {popover} = this.$refs
+            if(this.trigger === 'click'){
+                popover.removeEventListener('click', this.onClick)
+            }else{
+                popover.removeEventListener('mouseenter', this.open)
+                popover.removeEventListener('mouseout', this.close)
+            }
         },
         methods:{
             onClickDocument(e){
                 console.log('document关闭');
                 // 防止 content 冒泡到 document 触发关闭div
-                if(!this.$refs.contentWrapper.contains(e.target)){
-
+                // content 在外面 所以要加上
+                // 只要是 popover 就不处理 交给 popover 自己处理
+                if(!this.$refs.popover.contains(e.target)&&!this.$refs.contentWrapper.contains(e.target)){
                    this.close()
                 }
             },
@@ -79,6 +105,7 @@
                         console.log('button关闭');
                         this.close()
                     }else{
+                        console.log('开启');
                         this.open()
                     }
                 }
@@ -122,6 +149,7 @@
             &::before, &::after{
                 top: 100%;
                 left: 10px;
+                border-bottom: none;
             }
             &::before{
                 border-top-color: black;
@@ -137,6 +165,7 @@
             &::before, &::after{
                 bottom: 100%;
                 left: 10px;
+                border-top: none;
             }
             &::before{
                 border-bottom-color: black;
@@ -153,6 +182,7 @@
                 left: 100%;
                 top: 50%;
                 transform: translateY(-50%);
+                border-right: none;
             }
             &::before{
                 border-left-color: black;
@@ -168,6 +198,7 @@
                 right: 100%;
                 top: 50%;
                 transform: translateY(-50%);
+                border-left: none;
             }
             &::before{
                 border-right-color: black;

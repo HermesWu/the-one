@@ -44,8 +44,8 @@
         width: 200px;
     }
 </style>
-<div id="app">
-    <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px;padding: 150px;"  >
+<div id="app" style="padding: 100px">
+    <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px;padding-top: 150px;padding-bottom: 40px;"  >
        <g-popover>
            <template slot="content">
                propfadsfadsfasfasfasfasfasfafasfasfasfasfasfsfasfa
@@ -59,12 +59,39 @@
             <g-button>点我</g-button>
         </g-popover>
         <g-popover position="right">
+            <template slot="content" slot-scope="{close}">
+                propfadsfadsfasfasfasfasfasfafasfasfasfasfasfsfasfa
+                <button @click="close">关闭</button>
+            </template>
+            <g-button>点我</g-button>
+        </g-popover>
+        <g-popover position="left">
             <template slot="content">
                 propfadsfadsfasfasfasfasfasfafasfasfasfasfasfsfasfa
             </template>
             <g-button>点我</g-button>
         </g-popover>
-        <g-popover position="left">
+    </div>
+    <div style=" margin-bottom: 30px; min-height: 100px;padding-top: 150px;"  >
+        <g-popover trigger="hover">
+            <template slot="content">
+                propfadsfadsfasfasfasfasfasfafasfasfasfasfasfsfasfa
+            </template>
+            <g-button>点我</g-button>
+        </g-popover>
+        <g-popover position="bottom"  trigger="hover">
+            <template slot="content">
+                propfadsfadsfasfasfasfasfasfafasfasfasfasfasfsfasfa
+            </template>
+            <g-button>点我</g-button>
+        </g-popover>
+        <g-popover position="right" trigger="hover">
+            <template slot="content">
+                propfadsfadsfasfasfasfasfasfafasfasfasfasfasfsfasfa
+            </template>
+            <g-button>点我</g-button>
+        </g-popover>
+        <g-popover position="left" trigger="hover">
             <template slot="content">
                 propfadsfadsfasfasfasfasfasfafasfasfasfasfasfsfasfa
             </template>
