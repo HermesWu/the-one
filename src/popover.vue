@@ -35,23 +35,30 @@
                 }
             },
             positionContent(){
-                document.body.appendChild(this.$refs.contentWrapper)
                 const {contentWrapper, triggerWrapper} = this.$refs
+                document.body.appendChild(contentWrapper)
                 let {width, height, top, left} = triggerWrapper.getBoundingClientRect()
                 let {height:height2} = contentWrapper.getBoundingClientRect()
-                if(this.position === 'top'){
-                    contentWrapper.style.top = top + window.scrollY + 'px'
-                    contentWrapper.style.left = left + window.scrollX + 'px'
-                }else if(this.position === 'bottom'){
-                    contentWrapper.style.top = top + height + window.scrollY + 'px'
-                    contentWrapper.style.left = left + window.scrollX + 'px'
-                }else if(this.position === 'right'){
-                    contentWrapper.style.top = top - (height2 - height)/2 + window.scrollY + 'px'
-                    contentWrapper.style.left = left + width + window.scrollX + 'px'
-                }else if(this.position === 'left'){
-                    contentWrapper.style.top = top - (height2 - height)/2 + window.scrollY + 'px'
-                    contentWrapper.style.left = left + window.scrollX + 'px'
+                let x ={
+                    top:{
+                        top: top + window.scrollY,
+                        left: left + window.scrollX,
+                    },
+                    bottom:{
+                        top: top + height + window.scrollY,
+                        left: left + window.scrollX,
+                    },
+                    left:{
+                        top: top + (height - height2)/2 + window.scrollY,
+                        left: left + window.scrollX,
+                    },
+                    right:{
+                        top: top + (height - height2)/2 + window.scrollY,
+                        left: left + width + window.scrollX,
+                    },
                 }
+                contentWrapper.style.top = x[this.position].top + 'px'
+                contentWrapper.style.left = x[this.position].left + 'px'
 
             },
             open(){
