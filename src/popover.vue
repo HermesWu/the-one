@@ -88,6 +88,7 @@
 
             },
             open(){
+                console.log('open')
                 this.visible = true
                 this.$nextTick(()=>{
                     this.positionContent()

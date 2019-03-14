@@ -30,7 +30,6 @@ describe('TabsItem', () => {
                     name: 'onClick'
                 }
             }).$mount()
-            console.log(vm.$el.outerHTML);
             expect(vm.$el.classList.contains('disabled')).to.be.true
             const callback = sinon.fake();
             vm.$on('click', callback)
