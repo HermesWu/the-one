@@ -17,6 +17,8 @@ import TabsBody from './tabs-body'
 import TabsItem from './tabs-item'
 import TabsPane from './tabs-pane'
 import Popover from './popover'
+import Collapse from './collapse'
+import CollapseItem from './collapse-item'
 
 import chai from 'chai'
 import spies from 'chai-spies'
@@ -38,6 +40,8 @@ Vue.component('g-tabs-body', TabsBody)
 Vue.component('g-tabs-item', TabsItem)
 Vue.component('g-tabs-pane', TabsPane)
 Vue.component('g-popover', Popover)
+Vue.component('g-collapse', Collapse)
+Vue.component('g-collapse-item', CollapseItem)
 
 Vue.use(Plugin)
 
@@ -51,7 +55,8 @@ new Vue({
         loading1: false,
         loading2: true,
         loading3: false,
-        selectedTab: 'sports'
+        selectedTab: 'sports',
+        selectedArray:['1','2']
     },
     created(){
         // 触发 this.$emit('update:selected')

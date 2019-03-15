@@ -45,6 +45,12 @@
     }
 </style>
 <div id="app" style="padding: 100px">
+    <g-collapse :selected.sync="selectedArray" single>
+        <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>
+        <g-collapse-item title="标题2" name="2">内容2</g-collapse-item>
+        <g-collapse-item title="标题3" name="3">内容3</g-collapse-item>
+    </g-collapse>
+    {{ selectedArray}}
     <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px;padding-top: 150px;padding-bottom: 40px;"  >
        <g-popover>
            <template slot="content">
