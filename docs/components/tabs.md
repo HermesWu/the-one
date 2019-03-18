@@ -1,8 +1,8 @@
 ---
-title: Button
+title:Tabs
 ---
 
-# 按钮
+# Tabs
 
 <ClientOnly>
 <button-demos></button-demos>
