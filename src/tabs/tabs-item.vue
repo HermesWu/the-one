@@ -1,6 +1,6 @@
 <template>
     <div class="tabs-item" @click="clicked" :class="classes" :data-name="name">
-        <g-icon class="center" name="settings"></g-icon>
+        <!--<g-icon class="center" name="settings"></g-icon>-->
         <slot></slot>
     </div>
 </template>
