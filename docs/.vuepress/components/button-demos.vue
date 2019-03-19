@@ -34,5 +34,14 @@
     }
 </script>
 <style lang="scss" >
-
+    body {
+        .content:not(.custom) {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 0;
+        }
+    .content:not(.custom) > h1:first-child{
+        margin-top: 0;
+    }
+    }
 </style>
