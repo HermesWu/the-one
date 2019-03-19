@@ -1,9 +1,9 @@
 ---
-title:Tabs
+title: Tabs
 ---
 
-# Tabs
+# 标签
 
 <ClientOnly>
-<button-demos></button-demos>
+<tabs-demo></tabs-demo>
 </ClientOnly>

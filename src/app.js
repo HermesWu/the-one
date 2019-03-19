@@ -79,7 +79,7 @@ new Vue({
             )
         },
         inputChange(e){
-            console.log(e.target.value)
+            console.log('1',e)
         }
     }
 })

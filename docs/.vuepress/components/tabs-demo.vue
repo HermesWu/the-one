@@ -1,47 +1,59 @@
 <template>
-    <div style="padding-top: 16px;">
-        <h2>简单用法</h2>
-        <p>
-            <strong>预览</strong>
-        </p>
-        <t-button>默认按钮</t-button>
-        <t-button icon="settings">默认按钮</t-button>
-        <t-button :loading="true">默认按钮</t-button>
-        <t-button disabled>默认按钮</t-button>
+  <div style="padding-top: 16px;">
+    <h2>简单用法</h2>
+    <p>
+      <strong>预览</strong>
+    </p>
+    <t-tabs :selected="selected">
+      <t-tabs-head>
+        <t-tabs-item name="1">1</t-tabs-item>
+        <t-tabs-item name="2">2</t-tabs-item>
+      </t-tabs-head>
+      <t-tabs-body>
+        <t-tabs-pane name="1">content 1</t-tabs-pane>
+        <t-tabs-pane name="2">content 2</t-tabs-pane>
+      </t-tabs-body>
+    </t-tabs>
 
-        <p>
-            <strong>代码</strong>
-        </p>
-        <pre><code>{{content}}</code></pre>
-    </div>
+    <p>
+      <strong>示例代码：</strong>
+    </p>
+    <pre><code>{{content}}</code></pre>
+  </div>
 </template>
 <script>
-    import Button from '../../../src/button/button'
-    export default {
-        components: {
-            't-button': Button
-        },
-        data () {
-            return {
-                content: `
-                  <g-button>默认按钮</g-button>
-                  <g-button icon="settings">默认按钮</g-button>
-                  <g-button :loading="true">默认按钮</g-button>
-                  <g-button disabled>默认按钮</g-button>
-              `.replace(/\t+| +/g, '').trim()
-            }
-        }
+  import TTabs from '../../../src/tabs/tabs'
+  import TTabsHead from '../../../src/tabs/tabs-head'
+  import TTabsBody from '../../../src/tabs/tabs-body'
+  import TTabsItem from '../../../src/tabs/tabs-item'
+  import TTabsPane from '../../../src/tabs/tabs-pane'
+
+  export default {
+    components: {
+        TTabs, TTabsHead, TTabsBody, TTabsItem, TTabsPane,
+    },
+    data() {
+      return {
+        selected: '1',
+        content: `
+          data:{
+            selected: '1'
+          }
+          <t-tabs :selected="selected">
+            <t-tabs-head>
+              <t-tabs-item name="1">1</t-tabs-item>
+              <t-tabs-item name="2">2</t-tabs-item>
+            </t-tabs-head>
+            <t-tabs-body>
+              <t-tabs-pane name="1">content 1</t-tabs-pane>
+              <t-tabs-pane name="2">content 2</t-tabs-pane>
+            </t-tabs-body>
+          </t-tabs>
+        `.replace(/^ {8}/gm, '').trim()
+      }
     }
+  }
 </script>
-<style lang="scss" >
-    body {
-    .content:not(.custom) {
-        max-width: 740px;
-        margin: 0 auto;
-        padding: 0;
-    }
-    .content:not(.custom) > h1:first-child{
-        margin-top: 0;
-    }
-    }
+<style lang="scss">
+
 </style>
