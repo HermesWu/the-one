@@ -1,7 +1,7 @@
 const path = require('path')
 module.exports = {
     base: '/the-one/',
-    title: 'The One UI',
+    title: 'The Onen UI',
     description: '一个好用的UI框架',
     themeConfig: {
         nav: [
