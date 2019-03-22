@@ -2,7 +2,7 @@
   <div class="t-cascader">
     <div class="t-cascader-triger" @click="popoverVisible=!popoverVisible"></div>
     <div class="t-cascader-popover" v-if="popoverVisible">
-      <cascader-items :items="source" :height="height"></cascader-items>
+      <cascader-items :items="source" :height="height" :selected="selected" @update:selected="onUpdateSelected"></cascader-items>
     </div>
   </div>
 </template>
@@ -25,9 +25,19 @@
           },
           height:{
               type: String
+          },
+          selected: {
+              type: Array,
+              default:()=>{
+                  return []
+              }
           }
       },
-      computed:{
+      methods:{
+          onUpdateSelected(newSelected){
+              console.log(1)
+              this.$emit('update:selected', newSelected)
+          }
       }
   }
 </script>

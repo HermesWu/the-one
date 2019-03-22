@@ -2,9 +2,9 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px; padding:5px;" >
+    <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px; padding:5px;">
       <p>11111</p>
-      <t-cascader :source="source" height="200px"></t-cascader>
+      <t-cascader :source="source" :selected="selected" height="200px" @update:selected="selected=$event"></t-cascader>
       <p>22222</p>
 
     </div>
@@ -14,7 +14,7 @@
       <g-collapse-item title="标题3" name="3">内容3</g-collapse-item>
     </g-collapse>
     {{ selectedArray}}
-    <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px;padding-top: 150px;padding-bottom: 40px;"  >
+    <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px;padding-top: 150px;padding-bottom: 40px;">
       <g-popover>
         <template slot="content">
           propfadsfadsfasfasfasfasfasfafasfasfasfasfasfsfasfa
@@ -41,14 +41,14 @@
         <g-button>点我</g-button>
       </g-popover>
     </div>
-    <div style=" margin-bottom: 30px; min-height: 100px;padding-top: 150px;"  >
+    <div style=" margin-bottom: 30px; min-height: 100px;padding-top: 150px;">
       <g-popover trigger="hover">
         <template slot="content">
           propfadsfadsfasfasfasfasfasfafasfasfasfasfasfsfasfa
         </template>
         <g-button>点我</g-button>
       </g-popover>
-      <g-popover position="bottom"  trigger="hover">
+      <g-popover position="bottom" trigger="hover">
         <template slot="content">
           propfadsfadsfasfasfasfasfasfafasfasfasfasfasfsfasfa
         </template>
@@ -67,10 +67,12 @@
         <g-button>点我</g-button>
       </g-popover>
     </div>
-    <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px"  >
-      <g-tabs :selected.sync="selectedTab" >
+    <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px">
+      <g-tabs :selected.sync="selectedTab">
         <g-tabs-head>
-          <template slot="actions"><button>设置</button></template>
+          <template slot="actions">
+            <button>设置</button>
+          </template>
           <g-tabs-item name="women">美女</g-tabs-item>
           <g-tabs-item name="finance">财经</g-tabs-item>
           <g-tabs-item name="sports">体育</g-tabs-item>
@@ -162,7 +164,7 @@
 
     <g-input value="张三" :disabled="true"></g-input>
     <g-input value="李四" :readonly="true"></g-input>
-    <g-input value="王五"  @change="inputChange"></g-input>
+    <g-input value="王五" @change="inputChange"></g-input>
     <div style="margin-top: 20px;">
       <g-button>按钮</g-button>
       <g-button icon="settings" :loading="loading1" icon-position="left" @click="loading1 = !loading1">按钮</g-button>
@@ -177,114 +179,120 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'app',
-  data(){
-      return {
-          loading1: false,
-          loading2: true,
-          loading3: false,
-          selectedTab: 'sports',
-          selectedArray:['1','2'],
-          source:[
-              {
-                  name:'浙江',
-                  children:[
-                      {
-                          name: '杭州',
-                          children:[
-                              {name:'上城'},
-                              {name: '下城'},
-                              {name: '江干'}
-                          ]
+    export default {
+        name: 'app',
+        data() {
+            return {
+                selected:[],
+                loading1: false,
+                loading2: true,
+                loading3: false,
+                selectedTab: 'sports',
+                selectedArray: ['1', '2'],
+                source: [
+                    {
+                        name: '浙江',
+                        children: [
+                            {
+                                name: '杭州',
+                                children: [
+                                    {name: '上城'},
+                                    {name: '下城'},
+                                    {name: '江干'}
+                                ]
 
-                      },
-                      {name: '嘉兴'},
-                      {name: '湖州'}
-                  ]
-              },
-              {
-                  name:'福建',
-                  children:[
-                      {
-                          name: '福州',
-                          children:[
-                              {name: '鼓楼区'},
-                              {name: '台江区'},
-                              {name: '仓山区'}
-                          ]
-                      },
+                            },
+                            {name: '嘉兴'},
+                            {name: '湖州'}
+                        ]
+                    },
+                    {
+                        name: '福建',
+                        children: [
+                            {
+                                name: '福州',
+                                children: [
+                                    {name: '鼓楼区'},
+                                    {name: '台江区'},
+                                    {name: '仓山区'}
+                                ]
+                            },
 
-                  ]
-              },
-              {
-                  name:'安徽',
-                  children:[
-                      {
-                          name: '合肥',
-                          children:[
-                              {name: '瑶海'},
-                              {name: '庐阳'},
-                              {name: '蜀山'}
-                          ]
-                      },
+                        ]
+                    },
+                    {
+                        name: '安徽',
+                        children: [
+                            {
+                                name: '合肥',
+                                children: [
+                                    {name: '瑶海'},
+                                    {name: '庐阳'},
+                                    {name: '蜀山'}
+                                ]
+                            },
 
-                  ]
-              }
-          ]
-      }
-  },
-    methods:{
-        showToast(s){
-            this.$toast(`你的智商值为${parseInt(Math.random()*100)}, 你的智商需要充值！`,
-                {
-                    position: s,
-                    enableHtml: false,
-                    closeButton:{
-                        text: '知道了',
-                        callback: (toast) => {
-                            toast.log()
-                            console.log('用户关闭了 toast')
-                        }
+                        ]
                     }
-
-                }
-            )
+                ]
+            }
         },
-        inputChange(e){
-            console.log('1',e)
+        methods: {
+            showToast(s) {
+                this.$toast(`你的智商值为${parseInt(Math.random() * 100)}, 你的智商需要充值！`,
+                    {
+                        position: s,
+                        enableHtml: false,
+                        closeButton: {
+                            text: '知道了',
+                            callback: (toast) => {
+                                toast.log()
+                                console.log('用户关闭了 toast')
+                            }
+                        }
+
+                    }
+                )
+            },
+            inputChange(e) {
+                console.log('1', e)
+            }
+        },
+        components: {
+            HelloWorld
         }
-    },
-  components: {
-    HelloWorld
-  }
-}
+    }
 </script>
 
 <style lang="scss" scoped>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-img{max-width: 100%;}
-html{--font-size: 14px;}
-body{
-  font-size:var(--font-size);
-}
-.demo {
-  background: #ddd;
-  border: 1px solid #666;
-  min-height: 100px;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  img {max-width: 100%;}
+
+  html {--font-size: 14px;}
+
+  body {
+    font-size: var(--font-size);
+  }
+
+  .demo {
+    background: #ddd;
+    border: 1px solid #666;
+    min-height: 100px;
+  }
 </style>
