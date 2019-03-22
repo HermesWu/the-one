@@ -56,13 +56,12 @@
 </script>
 
 <style scoped lang="scss" type="text/scss">
-    $grey: grey;
-    $radius: 4px;
+    @import '../../styles/var';
     .collapse-item {
         &:first-child{
             > .title{
-                border-top-left-radius: $radius;
-                border-top-right-radius: $radius;
+                border-top-left-radius: $border-radius;
+                border-top-right-radius: $border-radius;
             }
         }
         > .title{

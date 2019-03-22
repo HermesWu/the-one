@@ -70,7 +70,7 @@
     }
     .cascader-items-right{
       height: 100%;
-      border-left: 1px solid $grey;
+      border-left: 1px solid $border-color-light;
     }
   }
 </style>
