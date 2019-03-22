@@ -1,51 +1,35 @@
 {
   "name": "the-onen",
-  "version": "0.0.2",
-  "description": "### 作者",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "吴晴 作者",
+  "private": true,
   "scripts": {
-    "start": "parcel index.html --no-cache",
-    "dev-test": "parcel watch test/* --no-cache & karma start",
-    "test": "parcel build test/* --no-cache --no-minify && karma start --single-run",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HermesWu/the-one.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/HermesWu/the-one/issues"
-  },
-  "alias": {
-    "vue": "./node_modules/vue/dist/vue.common.js"
-  },
-  "homepage": "https://github.com/HermesWu/the-one#readme",
   "dependencies": {
-    "vue": "^2.5.17",
-    "vue-hot-reload-api": "^2.3.0"
+    "vue": "^2.6.6"
   },
   "devDependencies": {
-    "@vue/component-compiler-utils": "^2.1.0",
+    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-unit-mocha": "^3.5.0",
+    "@vue/cli-service": "^3.5.0",
+    "@vue/test-utils": "1.0.0-beta.29",
     "chai": "^4.1.2",
-    "chai-spies": "^1.0.0",
-    "karma": "^2.0.5",
-    "karma-chai": "^0.1.0",
-    "karma-chai-spies": "^0.1.4",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-mocha": "^1.3.0",
-    "karma-sinon-chai": "^2.0.2",
-    "mocha": "^5.2.0",
-    "node-sass": "^4.11.0",
-    "parcel-bundler": "^1.9.7",
+    "fibers": "^3.1.1",
+    "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
-    "sinon": "^6.1.4",
-    "sinon-chai": "^3.2.0",
-    "vue-server-renderer": "^2.5.17",
-    "vue-template-compiler": "^2.5.17",
-    "vuepress": "^1.0.0-alpha.44",
-    "webpack-dev-middleware": "^3.6.0"
-  }
+    "vue-template-compiler": "^2.5.21"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
