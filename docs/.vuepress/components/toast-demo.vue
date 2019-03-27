@@ -115,7 +115,6 @@
         )
         },
         inputChange(e){
-            console.log('1',e)
         }
     }
   }

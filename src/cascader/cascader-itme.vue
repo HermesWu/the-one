@@ -1,8 +1,6 @@
 <template>
   <div class="cascader-items" :style="{height: height}">
     <div class="cascader-items-left">
-      {{level}}
-      {{selected[level]&&selected[level].name}}
       <div class="cascader-items-left-lable" v-for="item in items" @click="onClickLabel(item)">
         {{item.name}}
         <t-icon class="cascader-items-left-icon" v-if="item.children" name="right"> </t-icon>
@@ -43,6 +41,7 @@
           onClickLabel(item){
               let copy = JSON.parse(JSON.stringify(this.selected))
               copy[this.level] = item
+              copy.splice(this.level+1) // 删除 后面等级数据
               this.$emit('update:selected', copy)
           },
           onUpdateSelected(newSelected){
@@ -51,12 +50,15 @@
       },
       computed:{
           rightItems(){
-              let currentSelected = this.selected[this.level]
-              if(currentSelected && currentSelected.children){
-                  return currentSelected.children
-              }else{
-                  return null
+              if(this.selected[this.level]) { // 当前选择项
+                let selected = this.items.filter(item => item.name == this.selected[this.level].name)
+
+                  if(selected && selected[0].children&&selected[0].children.length>0){
+                      console.log('selected',selected)
+                      return selected[0].children
+                  }
               }
+
           }
       }
   }
@@ -70,6 +72,7 @@
     .cascader-items-left{
       height: 100%;
       padding-top: .3em;
+      overflow: auto;
       .cascader-items-left-lable{
         padding: .3em 1em;
         display: flex;

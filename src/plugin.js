@@ -8,7 +8,6 @@ export default {
                 currentToast.close()
             }
             currentToast = createToast({vue, message,propsData: toastOptions,onClose:()=>{
-                console.log('toast close 回调')
                 currentToast = null
             }})
 

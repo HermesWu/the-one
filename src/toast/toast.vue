@@ -75,7 +75,6 @@
                 }
             },
             log(){
-                console.log('测试')
             }
         },
         mounted(){

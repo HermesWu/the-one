@@ -52,7 +52,6 @@
         },
         methods:{
             onClickDocument(e){
-                console.log('document关闭');
                 // 防止 content 冒泡到 document 触发关闭div
                 // content 在外面 所以要加上
                 // 只要是 popover 就不处理 交给 popover 自己处理
@@ -88,7 +87,6 @@
 
             },
             open(){
-                console.log('open')
                 this.visible = true
                 this.$nextTick(()=>{
                     this.positionContent()
@@ -103,10 +101,8 @@
                 // 防止 点击 content 触发 popover 的点击事件
                 if(this.$refs.triggerWrapper.contains(event.target)){
                     if(this.visible === true){
-                        console.log('button关闭');
                         this.close()
                     }else{
-                        console.log('开启');
                         this.open()
                     }
                 }

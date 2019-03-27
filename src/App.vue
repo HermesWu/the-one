@@ -3,10 +3,12 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px; padding:5px;">
-      <p>11111</p>
-      <t-cascader :source="source" :selected="selected" height="200px" @update:selected="selected=$event"></t-cascader>
-      <p>22222</p>
 
+      {{selected &&selected[0]&& selected[0].name || '空'}}
+      {{selected &&selected[1]&& selected[1].name || '空'}}
+      {{selected &&selected[2]&& selected[2].name || '空'}}
+      <t-cascader :source.sync="source" :selected.sync="selected" height="200px" :load-date="loadDate"></t-cascader>
+    {{source}}
     </div>
     <g-collapse :selected.sync="selectedArray" single>
       <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>
@@ -180,6 +182,13 @@
 
 <script>
     import HelloWorld from './components/HelloWorld.vue'
+    import db from './db'
+    function ajax(parentId = 0){
+        return new Promise((resolve, reject)=>{
+            let result = db.filter(item=>item.parent_id == parentId)
+            resolve(result)
+        })
+    }
 
     export default {
         name: 'app',
@@ -192,50 +201,7 @@
                 selectedTab: 'sports',
                 selectedArray: ['1', '2'],
                 source: [
-                    {
-                        name: '浙江',
-                        children: [
-                            {
-                                name: '杭州',
-                                children: [
-                                    {name: '上城'},
-                                    {name: '下城'},
-                                    {name: '江干'}
-                                ]
 
-                            },
-                            {name: '嘉兴'},
-                            {name: '湖州'}
-                        ]
-                    },
-                    {
-                        name: '福建',
-                        children: [
-                            {
-                                name: '福州',
-                                children: [
-                                    {name: '鼓楼区'},
-                                    {name: '台江区'},
-                                    {name: '仓山区'}
-                                ]
-                            },
-
-                        ]
-                    },
-                    {
-                        name: '安徽',
-                        children: [
-                            {
-                                name: '合肥',
-                                children: [
-                                    {name: '瑶海'},
-                                    {name: '庐阳'},
-                                    {name: '蜀山'}
-                                ]
-                            },
-
-                        ]
-                    }
                 ]
             }
         },
@@ -258,7 +224,18 @@
             },
             inputChange(e) {
                 console.log('1', e)
+            },
+            loadDate({id},cb){
+                ajax(id).then(result=>{
+                    cb(result)
+                })
             }
+        },
+        created(){
+            ajax(0).then(result=>{
+                console.log('1',result)
+                this.source = result
+            })
         },
         components: {
             HelloWorld

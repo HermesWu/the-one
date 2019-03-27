@@ -119,7 +119,6 @@ new Vue({
                         text: '知道了',
                         callback: (toast) => {
                             toast.log()
-                            console.log('用户关闭了 toast')
                         }
                     }
 
@@ -127,7 +126,6 @@ new Vue({
             )
         },
         inputChange(e){
-            console.log('1',e)
         }
     }
 })
