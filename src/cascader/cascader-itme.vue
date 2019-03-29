@@ -2,12 +2,18 @@
   <div class="cascader-items" :style="{height: height}">
     <div class="cascader-items-left">
       <div class="cascader-items-left-lable" v-for="item in items" @click="onClickLabel(item)">
-        {{item.name}}
-        <t-icon class="cascader-items-left-icon" v-if="item.children" name="right"> </t-icon>
+        <span class="name">{{item.name}}</span>
+        <template v-if="item.name === loadItem.name">
+          <t-icon class="cascader-items-left-icon loading" v-if="rightArrowVisible(item)" name="loading"> </t-icon>
+        </template>
+        <template v-else>
+          <t-icon class="cascader-items-left-icon icon" v-if="rightArrowVisible(item)" name="right"> </t-icon>
+        </template>
+
       </div>
     </div>
     <div class="cascader-items-right" v-if="rightItems">
-      <cascader-items :items="rightItems"  :height="height" :selected="selected" :level="level+1" @update:selected="onUpdateSelected"></cascader-items>
+      <cascader-items :items="rightItems" :load-item="loadItem"  :height="height" :selected="selected" :level="level+1" :loadDate="loadDate" @update:selected="onUpdateSelected"></cascader-items>
     </div>
 
   </div>
@@ -32,12 +38,24 @@
                   return []
               }
           },
+          loadDate:{
+              type: Function
+          },
+          loadItem:{
+              type: Object,
+              default: ()=>{
+                  return {}
+              }
+          },
           level: {
               type: Number,
               default: 0
           }
       },
       methods:{
+          rightArrowVisible(item){
+              return this.loadDate ? !item.isLeaf:item.children
+          },
           onClickLabel(item){
               let copy = JSON.parse(JSON.stringify(this.selected))
               copy[this.level] = item
@@ -65,23 +83,38 @@
 </script>
 <style type="text/scss" scoped lang="scss">
   @import '../../styles/var';
+  @keyframes spin{
+    0% {transform: rotate(0deg)}
+    100% {transform: rotate(360deg)}
+  }
   .cascader-items{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     .cascader-items-left{
       height: 100%;
-      padding-top: .3em;
+      padding-top: .5em;
       overflow: auto;
       .cascader-items-left-lable{
-        padding: .3em 1em;
+        padding: .5em 1em;
         display: flex;
         align-items: center;
+        white-space: nowrap;
+        > .name{
+          margin-right: 1em;
+          user-select: none;
+        }
+        &:hover{
+          background: $grey;
+        }
+        > .loading{
+          animation: spin 2s infinite linear;
+        }
       }
       .cascader-items-left-icon{
-        margin-left: .5em;
-        transform: scale(0.8);
+        margin-left: auto;
       }
+
     }
     .cascader-items-right{
       height: 100%;

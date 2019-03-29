@@ -2,12 +2,13 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <t-cascader :source.sync="source" :selected.sync="selected" height="200px" :loadDate="loadDate" ></t-cascader>
     <div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px; padding:5px;">
 
       {{selected &&selected[0]&& selected[0].name || '空'}}
       {{selected &&selected[1]&& selected[1].name || '空'}}
       {{selected &&selected[2]&& selected[2].name || '空'}}
-      <t-cascader :source.sync="source" :selected.sync="selected" height="200px" :load-date="loadDate"></t-cascader>
+      <t-cascader :source.sync="source" :selected.sync="selected" height="200px" :loadDate="loadDate" ></t-cascader>
     {{source}}
     </div>
     <g-collapse :selected.sync="selectedArray" single>
@@ -185,8 +186,19 @@
     import db from './db'
     function ajax(parentId = 0){
         return new Promise((resolve, reject)=>{
-            let result = db.filter(item=>item.parent_id == parentId)
-            resolve(result)
+            setTimeout(()=>{
+                let result = db.filter(item=>item.parent_id == parentId)
+                result.forEach(node=>{
+                    if(db.filter((item)=>{return item.parent_id==node.id}).length>0){
+                        node.isLeaf = false
+                    }else{
+                        node.isLeaf = true
+                    }
+                })
+                resolve(result)
+            },1000)
+
+
         })
     }
 
@@ -236,6 +248,52 @@
                 console.log('1',result)
                 this.source = result
             })
+            // this.source = [
+            //     {
+            //         name:'浙江',
+            //         children:[
+            //             {
+            //                 name: '杭州',
+            //                 children:[
+            //                     {name:'上城'},
+            //                     {name: '下城'},
+            //                     {name: '江干'}
+            //                 ]
+            //
+            //             },
+            //             {name: '嘉兴'},
+            //             {name: '湖州'}
+            //         ]
+            //     },
+            //     {
+            //         name:'福建',
+            //         children:[
+            //             {
+            //                 name: '福州',
+            //                 children:[
+            //                     {name: '鼓楼区'},
+            //                     {name: '台江区'},
+            //                     {name: '仓山区'}
+            //                 ]
+            //             },
+            //
+            //         ]
+            //     },
+            //     {
+            //         name:'安徽',
+            //         children:[
+            //             {
+            //                 name: '合肥',
+            //                 children:[
+            //                     {name: '瑶海'},
+            //                     {name: '庐阳'},
+            //                     {name: '蜀山'}
+            //                 ]
+            //             },
+            //
+            //         ]
+            //     }
+            // ]
         },
         components: {
             HelloWorld

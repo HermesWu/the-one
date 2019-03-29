@@ -1,10 +1,10 @@
 <template>
-  <div class="t-cascader">
-    <div class="t-cascader-triger" @click="popoverVisible=!popoverVisible">
+  <div class="t-cascader" ref="cascader">
+    <div class="t-cascader-triger" @click="toggle">
       {{result}}
     </div>
     <div class="t-cascader-popover" v-if="popoverVisible">
-      <cascader-items :items="source" :height="height" :selected="selected" @update:selected="onUpdateSelected"></cascader-items>
+      <cascader-items :items="source" :loadItem="loadItem" :height="height" :selected="selected" :loadDate="loadDate" @update:selected="onUpdateSelected"></cascader-items>
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@
       data(){
         return {
             popoverVisible: false,
+            loadItem: {}
         }
       },
       props:{
@@ -39,6 +40,33 @@
           }
       },
       methods:{
+          onClickDocument(e){
+              let {cascader} = this.$refs
+              let {target} = e
+              if(cascader == target || cascader.contains(target)){return}
+              this.close()
+          },
+          open(){
+            this.popoverVisible = true
+            // this.$nextTick(()=>{
+            //     document.addEventListener('click', this.x)
+            // })
+            setTimeout(()=>(
+                document.addEventListener('click', this.onClickDocument)
+            ),0)
+          },
+          close(){
+              console.log('close')
+            this.popoverVisible = false
+            document.removeEventListener('click',this.onClickDocument)
+          },
+          toggle(){
+            if(this.popoverVisible == true){
+                this.close()
+            }else{
+                this.open()
+            }
+          },
           onUpdateSelected(newSelected){
               console.log(1)
               this.$emit('update:selected', newSelected)
@@ -75,17 +103,18 @@
                   }
               }
               let upDateSource = (result)=>{
-                  // let toUpdate = this.source.filter(item=>item.id ===lastItem.id)[0]
+                  this.loadItem = {}
                   let copy = JSON.parse(JSON.stringify(this.source))
                   let toUpdate = complex(copy, lastItem.id)
-                  // toUpdate.children = result
-                  // this.$emit('update:source', copy)
-                  // console.log('toUpdate', toUpdate)
                   this.$set(toUpdate,'children', result)
                   this.$emit('update:source', copy)
 
               }
-              this.loadDate(lastItem, upDateSource)
+              if(!lastItem.isLeaf && this.loadDate){
+                  this.loadDate(lastItem, upDateSource)
+                  this.loadItem = lastItem
+              }
+
           }
       },
 
@@ -100,11 +129,14 @@
   @import '../../styles/_var.scss';
   .t-cascader{
     position: relative;
+    border: 1px solid green;
+    display:inline-block;
     .t-cascader-triger{
-      border: 1px solid red;
-      width: 200px;
-      height: 40px;
-      display: flex;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      min-width: 10em;
+      height: $input-height;
+      display: inline-flex;
       justify-content: flex-start;
       align-items: center;
       padding: 0em 1em;
