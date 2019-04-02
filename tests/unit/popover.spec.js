@@ -4,6 +4,8 @@ import sinonChai from 'sinon-chai'
 import {mount} from '@vue/test-utils'
 import Popover from '../../src/popover/popover'
 
+chai.use(sinonChai)
+
 describe('Popover', () => {
     it('存在.', () => {
         expect(Popover).to.exist
