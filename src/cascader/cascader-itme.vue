@@ -72,7 +72,6 @@
                 let selected = this.items.filter(item => item.name == this.selected[this.level].name)
 
                   if(selected && selected[0].children&&selected[0].children.length>0){
-                      console.log('selected',selected)
                       return selected[0].children
                   }
               }

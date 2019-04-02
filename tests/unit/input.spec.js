@@ -26,42 +26,47 @@ describe('Input', () => {
             expect(inputElement.value).to.equal('1234')
         })
 
-        xit('接收 disabled', () => {
-            vm = new Constructor({
+        it('接收 disabled', () => {
+            const wrapper = mount(Input, {
                 propsData: {
                     disabled: true
                 }
-            }).$mount()
+            })
+            const {vm} = wrapper
             const inputElement = vm.$el.querySelector('input')
             expect(inputElement.disabled).to.equal(true)
         })
-        xit('接收 readonly', () => {
-            vm = new Constructor({
+        it('接收 readonly', () => {
+            const wrapper = mount(Input, {
                 propsData: {
                     readonly: true
                 }
-            }).$mount()
+            })
+            const {vm} = wrapper
             const inputElement = vm.$el.querySelector('input')
             expect(inputElement.readOnly).to.equal(true)
         })
 
-        xit('接收 error', () => {
-            vm = new Constructor({
+        it('接收 error', () => {
+            const wrapper = mount(Input, {
                 propsData: {
                     error: '你错了'
                 }
-            }).$mount()
+            })
+            const {vm} = wrapper
             const useElement = vm.$el.querySelector('use')
             expect(useElement.getAttribute('xlink:href')).to.equal('#i-error')
-            const errorMessage = vm.$el.querySelector('.errorMessage')
-            expect(errorMessage.innerText).to.equal('你错了')
+            const errorMessage = wrapper.find('.errorMessage')
+            console.log(errorMessage.text())
+            expect(errorMessage.text()).to.equal('你错了')
         })
     })
     describe('事件', () => {
-        xit('支持 change/input/focus/blur 事件', () => {
+        it('支持 change/input/focus/blur 事件', () => {
             ['change', 'input', 'focus', 'blur']
                 .forEach((eventName) => {
-                    vm = new Constructor({}).$mount()
+                    const wrapper = mount(Input)
+                    const {vm} = wrapper
                     const callback = sinon.fake();
                     vm.$on(eventName, callback)
                     //触发input的change 事件

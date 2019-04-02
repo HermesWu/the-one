@@ -114,12 +114,13 @@
 
 
     </div>
-    <div style=" border: 1px solid black;">
+    <div style=" border: 1px solid red;margin:30px">
       <!--<g-row gutter="20" >-->
       <!--<g-col span="2">1</g-col>-->
       <!--<g-col span="20" offset="2">2</g-col>-->
       <!--</g-row>-->
-      <g-row>
+
+      <g-row gutter="20">
         <g-col span="24"
                :ipad="{span:12, offset:3}"
                :narrow-pc="{span:8}"
@@ -148,20 +149,15 @@
                :wide-pc="{span:4}">
           <div class="demo"></div>
         </g-col>
-        <g-col span="24"
-               :ipad="{span:12}"
-               :narrow-pc="{span:8}"
-               :pc="{span:6}"
-               :wide-pc="{span:4}">
-          <div class="demo"></div>
-        </g-col>
-        <g-col span="24"
-               :ipad="{span:12}"
-               :narrow-pc="{span:8}"
-               :pc="{span:6}"
-               :wide-pc="{span:4}">
-          <div class="demo"></div>
-        </g-col>
+
+      </g-row>
+
+    </div>
+
+    <div>
+      <g-row gutter="20">
+        <g-col span="12">1</g-col>
+        <g-col span="12">2</g-col>
       </g-row>
     </div>
 
@@ -245,7 +241,6 @@
         },
         created(){
             ajax(0).then(result=>{
-                console.log('1',result)
                 this.source = result
             })
             // this.source = [

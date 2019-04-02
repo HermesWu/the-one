@@ -18,11 +18,10 @@ describe('Col', () => {
                 }
             })
             const classes = wrapper.find('.col').classes()
-            console.log(classes)
             expect(classes).include('col-1')
         })
         it('接收 offset 参数', () => {
-                        const wrapper = mount(Col,{
+            const wrapper = mount(Col,{
                 propsData: {
                     offset: 1
                 }

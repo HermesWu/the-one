@@ -56,7 +56,6 @@
             ),0)
           },
           close(){
-              console.log('close')
             this.popoverVisible = false
             document.removeEventListener('click',this.onClickDocument)
           },
@@ -68,7 +67,6 @@
             }
           },
           onUpdateSelected(newSelected){
-              console.log(1)
               this.$emit('update:selected', newSelected)
               let lastItem = newSelected[newSelected.length-1]
               let simplest = (children, id)=>{

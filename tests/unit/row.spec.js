@@ -1,6 +1,6 @@
 
 import chai,{expect} from 'chai'
-import {mount} from '@vue/test-utils'
+import {shallowMount,mount} from '@vue/test-utils'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 chai.use(sinonChai)
@@ -18,7 +18,7 @@ describe('Row', () => {
     describe('Props', () => {
         const Constructor = Vue.extend(Row)
         let vm
-        it('接收 gutter 属性', (done) => {
+        it('接收 gutter 属性', () => {
             Vue.component('g-row', Row)
             Vue.component('g-col', Col)
 
@@ -27,14 +27,16 @@ describe('Row', () => {
                     default:
                       `
                 <g-row gutter="20">
-                    <g-col span="12"></g-col>
-                    <g-col span="12"></g-col>
+                    <g-col span="12">1</g-col>
+                    <g-col span="12">2</g-col>
                 </g-row>
             `
-                }
+                },
+              propsData:{
+                  gutter: '20'
+              }
             })
             const {vm} = wrapper
-            console.log(wrapper.html());
             const rowElement = vm.$el.querySelector('.row')
             expect(getComputedStyle(rowElement).marginRight).to.eq('-10px')
             expect(getComputedStyle(rowElement).marginLeft).to.eq('-10px')
@@ -43,15 +45,25 @@ describe('Row', () => {
             expect(getComputedStyle(colElement[1]).paddingLeft).to.eq('10px')
         })
         xit('接受 align', () => {
-          const div = document.createElement('div')
-          document.body.appendChild(div)
-          vm = new Constructor({
-              propsData: {
-                  gutter: 20,
-                  align: 'left'
-              }
-          }).$mount(div)
-          const row = vm.$el
+          const wrapper = mount(Row,{
+            slots:{
+              default:
+                `
+                <g-row gutter="20">
+                    <g-col span="12">1</g-col>
+                    <g-col span="12">2</g-col>
+                </g-row>
+            `
+            },
+            propsData: {
+              gutter: '20',
+              align: 'left'
+            }
+          })
+          const {vm} = wrapper
+          const row = vm.$el.querySelector('.row')
+          // const row = vm.$el
+          console.log(111,getComputedStyle(row))
           expect(getComputedStyle(row).justifyContent).to.eq('flex-start')
             div.remove()
           vm.$destroy()
