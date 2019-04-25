@@ -41,7 +41,7 @@
                 popover.addEventListener('mouseleave', this.close)
             }
         },
-        destroy(){
+        beforeDestroy(){
             let {popover} = this.$refs
             if(this.trigger === 'click'){
                 popover.removeEventListener('click', this.onClick)
@@ -128,7 +128,8 @@
         padding: 0.5em 1em;
         word-break: break-all;
         /*box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);*/
-        filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.5));
+        /*filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.5));*/
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
         background-color: white;
         position: absolute;
         &::before, &::after{
