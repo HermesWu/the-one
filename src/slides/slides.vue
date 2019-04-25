@@ -16,7 +16,7 @@
       <span @click="select(selectedIndex -1)">
         <t-icon name="left"></t-icon>
       </span>
-      <span v-for="n in childrenLength" :class="{'active': selectedIndex == n-1}" @click="select(n-1)">
+      <span v-for="n in childrenLength" :class="{'active': selectedIndex == n-1}" @click="select(n-1)" :key="n" :data-index="n-1">
         {{ n }}
       </span>
       <span @click="select(selectedIndex +1)">
@@ -37,6 +37,11 @@
       autoPlay: {
         type: Boolean,
         default: true
+      },
+
+      autoPlayDelay:{
+        type: Number,
+        default: 3000
       }
     },
     data(){
@@ -51,7 +56,9 @@
     },
     mounted(){
       this.updateChildren()
-      this.playAutomatically()
+      if(this.autoPlay){
+        this.playAutomatically()
+      }
       this.childrenLength = this.$children.filter(vm=>vm.$options.name === 'TheOnenSlidesItem').length
       this.lastSelectedIndex = this.getSelected()
 
@@ -151,9 +158,9 @@
           let index = this.names.indexOf(this.getSelected())
           let newIndex = index+1
           this.select(newIndex) // 告诉外界 选中 新的index
-          this.timeId = setTimeout(run, 3000)
+          this.timeId = setTimeout(run, this.autoPlayDelay)
         }
-        this.timeId = setTimeout(run, 3000)
+        this.timeId = setTimeout(run, this.autoPlayDelay)
       },
       /**
        * 取消自动播放
