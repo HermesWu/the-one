@@ -1,10 +1,26 @@
 <template>
   <div id="app">
-    <t-slides  class="wrapper"  :selected.sync="selected">
-      <t-slides-item  name="1"><div class="box">1</div></t-slides-item>
-      <t-slides-item  name="2"><div class="box">2</div></t-slides-item>
-      <t-slides-item  name="3"><div class="box">3</div></t-slides-item>
-    </t-slides>
+
+    <!--nav 导航 demo-->
+
+    <div>
+      <t-nav :selected.sync="selected">
+        <t-nav-item name="home">首页</t-nav-item>
+        <t-nav-item name="about">关于</t-nav-item>
+        <t-nav-item name="hire">招聘</t-nav-item>
+      </t-nav>
+    </div>
+
+    <!--slide 轮播 demo-->
+
+    <!--<t-slides  class="wrapper"  :selected.sync="selected">-->
+      <!--<t-slides-item  name="1"><div class="box">1</div></t-slides-item>-->
+      <!--<t-slides-item  name="2"><div class="box">2</div></t-slides-item>-->
+      <!--<t-slides-item  name="3"><div class="box">3</div></t-slides-item>-->
+    <!--</t-slides>-->
+
+    <!--最初 demo-->
+
     <!--<div>-->
 
       <!--<img alt="Vue logo" src="./assets/logo.png">-->
@@ -189,9 +205,12 @@
 
 <script>
   import HelloWorld from './components/HelloWorld.vue'
-  import db from './db'
+  import db from '../tests/fixtures/db'
   import TSlides from './slides/slides'
   import TSlidesItem from './slides/slides-item'
+  import TNav from './nav/nav'
+  import TNavItem from './nav/nav-item'
+  import TSubNav from './nav/sub-nav'
 
   function ajax(parentId = 0) {
     return new Promise((resolve, reject) => {
@@ -215,17 +234,25 @@
 
   export default {
     name: 'app',
-
+    components: {
+      HelloWorld,
+      TSlides,
+      TSlidesItem,
+      TNav,
+      TNavItem,
+      TSubNav
+    },
     data() {
       return {
-        selected: [],
-        loading1: false,
-        loading2: true,
-        loading3: false,
-        selectedTab: 'sports',
-        selectedArray: ['1', '2'],
-        source: [],
-        selected: undefined
+        // selected: [], // cascader
+        // loading1: false,
+        // loading2: true,
+        // loading3: false,
+        // selectedTab: 'sports',
+        // selectedArray: ['1', '2'],
+        // source: [],
+        // selected: undefined // slides
+        selected: ['about'] // nav 导航
       }
     },
     methods: {
@@ -310,11 +337,6 @@
       //   this.selected = '2'
       //   console.log('selected', this.selected)
       // },3000)
-    },
-    components: {
-      HelloWorld,
-      TSlides,
-      TSlidesItem
     }
   }
 </script>
