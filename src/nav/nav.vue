@@ -6,7 +6,6 @@
 <script>
   export default{
     name: 'TheOnenNav',
-
     props:{
       selected:{
         type: Array,
@@ -18,7 +17,7 @@
       }
     },
     mounted(){
-      this.updateChildren()
+      this.updateChildren();
       this.listenToChildren()
     },
     computed:{
@@ -32,11 +31,7 @@
     methods:{
       updateChildren(){
         this.items.forEach(vm=>{
-          if(this.selected.indexOf(vm.name) >= 0){
-            vm.selected = true
-          }else{
-            vm.selected = false
-          }
+          vm.selected = this.selected.indexOf(vm.name) >= 0;
         })
       },
       listenToChildren(){
@@ -44,8 +39,8 @@
           vm.$on('add:selected', name=>{
             if(this.multiple){
               if(this.selected.indexOf(name)<0){
-                let copy = JSON.parse(JSON.stringify(this.selected))
-                copy.push(name)
+                let copy = JSON.parse(JSON.stringify(this.selected));
+                copy.push(name);
                 this.$emit('update:selected', copy)
               }
             }else{
@@ -58,7 +53,7 @@
 
   }
 </script>
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss" scoped type="text/scss" >
   .t-nav{
     display: flex;
     border: 1px solid red;
