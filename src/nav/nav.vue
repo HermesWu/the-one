@@ -6,6 +6,16 @@
 <script>
   export default{
     name: 'TheOnenNav',
+    provide(){
+      return {
+        root: this
+      }
+    },
+    data(){
+      return {
+        items:[]
+      }
+    },
     props:{
       selected:{
         type: Array,
@@ -21,9 +31,9 @@
       this.listenToChildren()
     },
     computed:{
-      items(){
-        return this.$children.filter(vm=>vm.$options.name==='TheOnenNavItem')
-      }
+      // items(){
+      //   return this.$children.filter(vm=>vm.$options.name==='TheOnenNavItem')
+      // }
     },
     updated(){
       this.updateChildren()
@@ -48,14 +58,20 @@
             }
           })
         })
+      },
+      addItems(item){
+        this.items.push(item)
       }
     },
 
   }
 </script>
 <style lang="scss" scoped type="text/scss" >
+  @import '../../styles/var';
   .t-nav{
     display: flex;
-    border: 1px solid red;
+    border-bottom: 1px solid $grey;
+    color: $color;
+    cursor: default;
   }
 </style>
