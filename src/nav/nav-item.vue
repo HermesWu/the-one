@@ -1,12 +1,12 @@
 <template>
-  <div class="t-nav-item" :class="{selected}" @click="onClick">
+  <div class="t-nav-item" :class="{selected, vertical}" @click="onClick">
     <slot></slot>
   </div>
 </template>
 <script>
   export default{
     name: 'TheOnenNavItem',
-    inject:['root'],
+    inject:['root', 'vertical'],
     created(){
       this.root.addItems(this)
     },
@@ -23,6 +23,8 @@
     },
     methods:{
       onClick(){
+        this.root.namePath=[]
+        this.$parent.updateNamePath&&this.$parent.updateNamePath()
         this.$emit('add:selected', this.name)
       }
     }
@@ -33,19 +35,26 @@
   .t-nav-item{
     padding: 10px 20px;
     position: relative;
-    &.selected{
-      &::after{
-        width: 100%;
-        content: '';
-        display: block;
-        position: absolute;
-        bottom: 0;
-        left:0;
-        border: 2px solid $blue;
+    &:not(.vertical){
+      &.selected{
+        &::after{
+          width: 100%;
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left:0;
+          border: 2px solid $blue;
+        }
+      }
+    }
+    &.vertical{
+      &.selected{
+        color: $blue;
       }
     }
   }
-  .t-sub-nav .t-nav-item{
+  .t-sub-nav .t-nav-item:not(.vertical){
     &.selected{
       color: $color;
       background: $grey;
