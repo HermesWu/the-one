@@ -1,5 +1,5 @@
 <template>
-  <div class="t-nav-item" :class="{selected, vertical}" @click="onClick">
+  <div class="t-nav-item" :class="{selected, vertical}" :data-name="name" @click="onClick">
     <slot></slot>
   </div>
 </template>
@@ -25,7 +25,7 @@
       onClick(){
         this.root.namePath=[]
         this.$parent.updateNamePath&&this.$parent.updateNamePath()
-        this.$emit('add:selected', this.name)
+        this.$emit('update:selected', this.name)
       }
     }
   }

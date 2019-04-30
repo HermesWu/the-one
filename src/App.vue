@@ -46,6 +46,7 @@
         </t-sub-nav>
         <t-nav-item name="hire">招聘</t-nav-item>
       </t-nav>
+      <p>用户选择了{{selected}}</p>
     </div>
 
     <!--slide 轮播 demo-->
@@ -289,7 +290,7 @@
         // selectedArray: ['1', '2'],
         // source: [],
         // selected: undefined // slides
-        selected: ['developers'] // nav 导航
+        selected: 'developers' // nav 导航
       }
     },
     methods: {

@@ -82,7 +82,7 @@ describe('Slides', () => {
       // })
     })
   })
-  it('自动播放', ()=>{
+  xit('自动播放', ()=>{
     const callback = sinon.fake()
     const wrapper = mount(Slides, {
       propsData:{
