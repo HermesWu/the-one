@@ -18,18 +18,19 @@ describe('Row', () => {
     describe('Props', () => {
         const Constructor = Vue.extend(Row)
         let vm
-        it('接收 gutter 属性', () => {
+        it('接收 gutter 属性', (done) => {
             Vue.component('g-row', Row)
             Vue.component('g-col', Col)
 
             const wrapper = mount(Row,{
-                slots:{
-                    default:
-                      `
-                <g-row gutter="20">
-                    <g-col span="12">1</g-col>
-                    <g-col span="12">2</g-col>
-                </g-row>
+              attachToDocument: true,
+              slots:{
+                  default:
+                    `
+              <g-row gutter="20">
+                  <g-col span="12">1</g-col>
+                  <g-col span="12">2</g-col>
+              </g-row>
             `
                 },
               propsData:{
@@ -37,15 +38,20 @@ describe('Row', () => {
               }
             })
             const {vm} = wrapper
-            const rowElement = vm.$el.querySelector('.row')
-            expect(getComputedStyle(rowElement).marginRight).to.eq('-10px')
-            expect(getComputedStyle(rowElement).marginLeft).to.eq('-10px')
-            const colElement = vm.$el.querySelectorAll('.col')
-            expect(getComputedStyle(colElement[0]).paddingRight).to.eq('10px')
-            expect(getComputedStyle(colElement[1]).paddingLeft).to.eq('10px')
+            setTimeout(()=>{
+              const rowElement = vm.$el.querySelector('.row')
+              expect(getComputedStyle(rowElement).marginRight).to.eq('-10px')
+              expect(getComputedStyle(rowElement).marginLeft).to.eq('-10px')
+              const colElement = vm.$el.querySelectorAll('.col')
+              expect(getComputedStyle(colElement[0]).paddingRight).to.eq('10px')
+              expect(getComputedStyle(colElement[1]).paddingLeft).to.eq('10px')
+              done()
+            },0)
+
         })
-        xit('接受 align', () => {
+        it('接受 align', () => {
           const wrapper = mount(Row,{
+            attachToDocument: true,
             slots:{
               default:
                 `
@@ -62,11 +68,10 @@ describe('Row', () => {
           })
           const {vm} = wrapper
           const row = vm.$el.querySelector('.row')
-          // const row = vm.$el
-          console.log(111,getComputedStyle(row))
-          expect(getComputedStyle(row).justifyContent).to.eq('flex-start')
-            div.remove()
-          vm.$destroy()
+          setTimeout(()=>{
+            expect(getComputedStyle(row).justifyContent).to.eq('flex-start')
+          })
+
         })
     })
 })

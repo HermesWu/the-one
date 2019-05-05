@@ -36,6 +36,7 @@ describe('Slides', () => {
     })
     it('selected是几 第几个被选中', ()=>{
       const wrapper = mount(Slides, {
+        attachToDocument: true,
         propsData:{
           autoPlay: false,
           selected: '2'
@@ -57,6 +58,7 @@ describe('Slides', () => {
     })
     it('点击第二个 展示第二个', ()=>{
       const wrapper = mount(Slides, {
+        attachToDocument: true,
         propsData:{
           autoPlay: false,
         },
@@ -75,7 +77,9 @@ describe('Slides', () => {
           `
         }
       })
-      wrapper.find('[data-index="1"]').trigger('click')
+      setTimeout(()=>{
+        wrapper.find('[data-index="1"]').trigger('click')
+      })
       // setTimeout(()=>{
       //   console.log(wrapper.html());
       //   expect(wrapper.find('.box1').exists()).to.be.true
