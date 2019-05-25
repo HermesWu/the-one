@@ -24,24 +24,28 @@
         data () {
             return {
                 content: `
-                  <g-button>默认按钮</g-button>
-                  <g-button icon="settings">默认按钮</g-button>
-                  <g-button :loading="true">默认按钮</g-button>
-                  <g-button disabled>默认按钮</g-button>
+                  import Button from '../../../src/button/button
+
+                  components: {'t-button': Button}
+
+                  <t-button>默认按钮</t-button>
+                  <t-button icon="settings">默认按钮</t-button>
+                  <t-button :loading="true">默认按钮</t-button>
+                  <t-button disabled>默认按钮</t-button>
               `.replace(/\t+| +/g, '').trim()
             }
         }
     }
 </script>
-<style lang="scss" >
+<style lang="scss" type="text/scss">
     body {
         .content:not(.custom) {
             max-width: 740px;
             margin: 0 auto;
             padding: 0;
         }
-    .content:not(.custom) > h1:first-child{
-        margin-top: 0;
-    }
+        .content:not(.custom) > h1:first-child{
+            margin-top: 0;
+        }
     }
 </style>
