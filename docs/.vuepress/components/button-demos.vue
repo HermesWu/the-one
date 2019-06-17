@@ -24,7 +24,7 @@
         data () {
             return {
                 content: `
-                  import Button from '../../../src/button/button
+                  import Button from '../../../src/button/button'
 
                   components: {'t-button': Button}
 

@@ -8,7 +8,8 @@
     "build": "vue-cli-service build",
     "test": "karma start --single-run",
     "test:unit": "karma start",
-    "test:unit:old": "vue-cli-service test:unit"
+    "test:unit:old": "vue-cli-service test:unit",
+    "docs:build":"npx vuepress build docs"
   },
   "dependencies": {
     "vue": "^2.6.6"
