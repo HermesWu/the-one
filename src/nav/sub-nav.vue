@@ -1,6 +1,6 @@
 <template>
   <div class="t-sub-nav" :class="{active, vertical}" v-click-outside="close">
-    <span class="t-sub-nav-label" @click="onClick">
+    <span class="t-sub-nav-label" :class="{open, vertical}"  @click="onClick">
       <slot name="title" ></slot>
       <span class="t-sub-nav-icon" :class="{open, vertical}">
         <t-icon name="left"></t-icon>
@@ -140,6 +140,9 @@
     }
   }
   .t-sub-nav .t-sub-nav {
+    &.vertical{
+      padding: 10px 10px;
+    }
     .t-sub-nav-icon{
       transition: transform 250ms;
       display: inline-flex;

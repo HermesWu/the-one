@@ -63,5 +63,8 @@
       }
     }
   }
+  .t-sub-nav .t-nav-item.vertical{
+    padding: 10px 30px;
+  }
 
 </style>
