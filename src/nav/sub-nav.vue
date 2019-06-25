@@ -1,5 +1,5 @@
 <template>
-  <div class="t-sub-nav" :class="{active, vertical}" v-click-outside="close">
+  <div class="t-sub-nav" :class="{active}" v-click-outside="close">
     <span class="t-sub-nav-label" :class="{open, vertical}"  @click="onClick">
       <slot name="title" ></slot>
       <span class="t-sub-nav-icon" :class="{open, vertical}">
