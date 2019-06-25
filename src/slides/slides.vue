@@ -187,6 +187,7 @@
       padding: 8px;
       justify-content: center;
       align-items: center;
+      user-select: none;
       span{
         display: inline-flex;
         justify-content: center;
