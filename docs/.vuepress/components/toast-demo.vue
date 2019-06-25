@@ -46,44 +46,44 @@
       return {
         value: '中文',
         content: `
-          <button @click="$toast('弹出的提示信息, 默认在顶部')">Top</button>
-          <button @click="$toast('弹出的提示信息,位置在中间',{position: 'middle'})">Middle</button>
-          <button @click="$toast('弹出的提示信息，位置在底部',{position: 'bottom'})">Bottom</button>
-        `.replace(/^ {8}/gm, '').trim(),
+<button @click="$toast('弹出的提示信息, 默认在顶部')">Top</button>
+<button @click="$toast('弹出的提示信息,位置在中间',{position: 'middle'})">Middle</button>
+<button @click="$toast('弹出的提示信息，位置在底部',{position: 'bottom'})">Bottom</button>
+        `,
         content2: `
-          <button @click="showToast">Top</button>
+<button @click="showToast">Top</button>
 
-          showToast(){
-            this.$toast('我的小鱼你醒了，还认识早晨吗？',
-              {
-                enableHtml: false,
-                closeButton:{
-                  text: '认识',
-                  callback: (toast) => {
-                      console.log('昨夜你曾经说，愿夜幕永不开启。')
-                  }
-                }
-              }
-            )
-          },
-        `.replace(/^ {8}/gm, '').trim(),
+showToast(){
+  this.$toast('我的小鱼你醒了，还认识早晨吗？',
+    {
+      enableHtml: false,
+      closeButton:{
+        text: '认识',
+        callback: (toast) => {
+            console.log('昨夜你曾经说，愿夜幕永不开启。')
+        }
+      }
+    }
+  )
+}
+        `,
         content3: `
-          <button @click="showToast">Top</button>
+<button @click="showToast">Top</button>
 
-          showToast(){
-            this.$toast(<strong style="color:red;">我的小鱼你醒了，还认识早晨吗？</strong>,
-              {
-                enableHtml: false,
-                closeButton:{
-                  text: '认识',
-                  callback: (toast) => {
-                      console.log('昨夜你曾经说，愿夜幕永不开启。')
-                  }
-                }
-              }
-            )
-          },
-        `.replace(/^ {8}/gm, '').trim(),
+showToast(){
+  this.$toast(<strong style="color:red;">我的小鱼你醒了，还认识早晨吗？</strong>,
+    {
+      enableHtml: false,
+      closeButton:{
+        text: '认识',
+        callback: (toast) => {
+            console.log('昨夜你曾经说，愿夜幕永不开启。')
+        }
+      }
+    }
+  )
+},
+        `,
       }
     },
     methods:{

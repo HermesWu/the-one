@@ -37,17 +37,17 @@
       return {
         value: '中文',
         content: `
-          <t-input></t-input>
-          <t-input value="中文"></t-input>
-          <t-input value="中文" disabled></t-input>
-          <t-input value="中文" readonly></t-input>
-        `.replace(/^ {8}/gm, '').trim(),
+<t-input></t-input>
+<t-input value="中文"></t-input>
+<t-input value="中文" disabled></t-input>
+<t-input value="中文" readonly></t-input>
+        `,
         content2: `
-          data:{
-            value: '中文'
-          }
-          <t-input v-model="value"></t-input>
-        `.replace(/^ {8}/gm, '').trim(),
+data:{
+  value: '中文'
+}
+<t-input v-model="value"></t-input>
+        `,
       }
     }
   }

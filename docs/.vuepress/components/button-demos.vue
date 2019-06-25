@@ -24,15 +24,11 @@
         data () {
             return {
                 content: `
-                  import Button from '../../../src/button/button'
-
-                  components: {'t-button': Button}
-
-                  <t-button>默认按钮</t-button>
-                  <t-button icon="settings">默认按钮</t-button>
-                  <t-button :loading="true">默认按钮</t-button>
-                  <t-button disabled>默认按钮</t-button>
-              `.replace(/\t+| +/g, '').trim()
+<t-button>默认按钮</t-button>
+<t-button icon="settings">默认按钮</t-button>
+<t-button :loading="true">默认按钮</t-button>
+<t-button disabled>默认按钮</t-button>
+              `
             }
         }
     }

@@ -67,32 +67,32 @@
     data() {
       return {
         content: `
-          <t-layout>
-            <t-header style="height: 50px; background:lightskyblue;">header</t-header>
-            <t-content style="height: 50px; background:deepskyblue;">content</t-content>
-            <t-footer style="height: 50px; background:lightskyblue;">footer</t-footer>
-          </t-layout>
-        `.replace(/^ {8}/gm, '').trim(),
+<t-layout>
+  <t-header style="height: 50px; background:lightskyblue;">header</t-header>
+  <t-content style="height: 50px; background:deepskyblue;">content</t-content>
+  <t-footer style="height: 50px; background:lightskyblue;">footer</t-footer>
+</t-layout>
+        `,
         content2: `
-          <t-layout  style="color: white; overflow:hidden; margin-bottom:50px;">
-            <t-header style="height: 50px; background:lightskyblue;">header</t-header>
-            <t-layout>
-              <t-sider style="height: 100px; width:200px;background:#ddd;">sider</t-sider>
-              <t-content style="height: 100px; background:deepskyblue;">content</t-content>
-            </t-layout>
-            <t-footer style="height: 50px; background:lightskyblue;">footer</t-footer>
-          </t-layout>
-        `.replace(/^ {8}/gm, '').trim(),
+<t-layout  style="color: white; overflow:hidden; margin-bottom:50px;">
+  <t-header style="height: 50px; background:lightskyblue;">header</t-header>
+  <t-layout>
+    <t-sider style="height: 100px; width:200px;background:#ddd;">sider</t-sider>
+    <t-content style="height: 100px; background:deepskyblue;">content</t-content>
+  </t-layout>
+  <t-footer style="height: 50px; background:lightskyblue;">footer</t-footer>
+</t-layout>
+        `,
         content3: `
-          <t-layout  style="color: white; overflow:hidden; margin-bottom:50px;">
-            <t-sider style=" width:200px;background:#ddd;">sider</t-sider>
-            <t-layout>
-              <t-header style="height: 50px; background:lightskyblue;">header</t-header>
-              <t-content style="height: 100px; background:deepskyblue;">content</t-content>
-              <t-footer style="height: 50px; background:lightskyblue;">footer</t-footer>
-            </t-layout>
-          </t-layout>
-        `.replace(/^ {8}/gm, '').trim(),
+<t-layout  style="color: white; overflow:hidden; margin-bottom:50px;">
+  <t-sider style=" width:200px;background:#ddd;">sider</t-sider>
+  <t-layout>
+    <t-header style="height: 50px; background:lightskyblue;">header</t-header>
+    <t-content style="height: 100px; background:deepskyblue;">content</t-content>
+    <t-footer style="height: 50px; background:lightskyblue;">footer</t-footer>
+  </t-layout>
+</t-layout>
+        `,
       }
     }
   }

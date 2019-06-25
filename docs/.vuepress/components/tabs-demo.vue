@@ -36,20 +36,20 @@
       return {
         selected: '1',
         content: `
-          data:{
-            selected: '1'
-          }
-          <t-tabs :selected="selected">
-            <t-tabs-head>
-              <t-tabs-item name="1">1</t-tabs-item>
-              <t-tabs-item name="2">2</t-tabs-item>
-            </t-tabs-head>
-            <t-tabs-body>
-              <t-tabs-pane name="1">content 1</t-tabs-pane>
-              <t-tabs-pane name="2">content 2</t-tabs-pane>
-            </t-tabs-body>
-          </t-tabs>
-        `.replace(/^ {8}/gm, '').trim()
+data:{
+  selected: '1'
+}
+<t-tabs :selected="selected">
+  <t-tabs-head>
+    <t-tabs-item name="1">1</t-tabs-item>
+    <t-tabs-item name="2">2</t-tabs-item>
+  </t-tabs-head>
+  <t-tabs-body>
+    <t-tabs-pane name="1">content 1</t-tabs-pane>
+    <t-tabs-pane name="2">content 2</t-tabs-pane>
+  </t-tabs-body>
+</t-tabs>
+        `
       }
     }
   }
