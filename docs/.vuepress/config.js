@@ -32,7 +32,8 @@ module.exports = {
                     '/components/collapse',
                     '/components/carousel',
                     '/components/cascader',
-                    '/components/nav'
+                    '/components/nav',
+                    '/components/pagination'
                 ]
             },
 
