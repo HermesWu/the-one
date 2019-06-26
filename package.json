@@ -1,8 +1,8 @@
 {
   "name": "the-onen",
-  "version": "0.1.0",
-  "description": "吴晴 作者",
-  "private": true,
+  "version": "0.2.1",
+  "description": "HermesWu",
+  "main": "dist/main.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
