@@ -4,6 +4,7 @@
             <slot></slot>
         </div>
         <div class="temp" ref="temp"></div>
+        <div><img :src="imgSrc" alt=""></div>
     </div>
 
 </template>
@@ -22,34 +23,45 @@
         action: {
           type: String,
           require: true
+        },
+        parseResponse: {
+          type: Function,
+          required: true
         }
       },
       data(){
         return {
-
+            imgSrc: 'about:blank'
         }
       },
       methods: {
         onClickUploader() {
-          let input = document.createElement('input')
-          input.type = 'file'
-          this.$refs.temp.append(input)
+          let input = this.createInput()
           input.addEventListener('change', () => {
-            let file = input.files[0]
-            input.remove()
-            this.uploadToServer(file)
+            this.uploadFile(input)
           })
           input.click()
         },
-        uploadToServer(file) {
+        createInput(){
+          let input = document.createElement('input')
+          input.type = 'file'
+          this.$refs.temp.append(input)
+          return input
+        },
+        uploadFile(input) {
+          let file = input.files[0]
+          input.remove()
           let formData = new FormData();
           formData.append(this.name, file);
+          this.doUploadFile(formData, (response)=>{
+            this.imgSrc = this.parseResponse(response)
+          })
 
+        },
+        doUploadFile(formData, callback){
           var xhr = new XMLHttpRequest()
           xhr.open(this.methods, this.action)
-          xhr.onload = function() {
-            console.log(xhr.response)
-          }
+          xhr.onload = callback(xhr.response)
           xhr.send(formData)
         }
       }
