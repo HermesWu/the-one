@@ -3,8 +3,15 @@
         <div @click="onClickUploader">
             <slot></slot>
         </div>
-        <div class="temp" ref="temp"></div>
-        <div><img :src="imgSrc" alt=""></div>
+        <div class="temp" ref="temp">
+
+        </div>
+        <ol>
+            <li v-for="file in fileList" :key="file.name">
+                <img :src="file.url" width="100" height="100" alt="">
+                {{ file.name }}
+            </li>
+        </ol>
     </div>
 
 </template>
@@ -27,6 +34,10 @@
         parseResponse: {
           type: Function,
           required: true
+        },
+        fileList: {
+          type: Array,
+          default: () => []
         }
       },
       data(){
@@ -38,7 +49,9 @@
         onClickUploader() {
           let input = this.createInput()
           input.addEventListener('change', () => {
-            this.uploadFile(input)
+            let file = input.files[0]
+            this.uploadFile(file)
+            input.remove()
           })
           input.click()
         },
@@ -48,20 +61,28 @@
           this.$refs.temp.append(input)
           return input
         },
-        uploadFile(input) {
-          let file = input.files[0]
-          input.remove()
+        uploadFile(file) {
+          let {size, type, name} = file
           let formData = new FormData();
           formData.append(this.name, file);
           this.doUploadFile(formData, (response)=>{
-            this.imgSrc = this.parseResponse(response)
+            let url = this.parseResponse(response)
+            while(this.fileList.filter(f => f.name === name).length > 0){
+              let dotIndex = name.lastIndexOf('.')
+              let nameWidthoutExtension = name.substring(0, dotIndex)
+              let extension = name.substring(dotIndex)
+              name = nameWidthoutExtension + '(1)' + extension
+            }
+            this.$emit('update:fileList', [...this.fileList, { name, size, type, url}])
           })
 
         },
         doUploadFile(formData, callback){
           var xhr = new XMLHttpRequest()
           xhr.open(this.methods, this.action)
-          xhr.onload = callback(xhr.response)
+          xhr.onload = () => {
+            callback(xhr.response)
+          }
           xhr.send(formData)
         }
       }
