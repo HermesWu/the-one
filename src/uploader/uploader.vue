@@ -8,6 +8,9 @@
         </div>
         <ol>
             <li v-for="file in fileList" :key="file.name">
+                <template v-if="file.status === 'uploading'">
+                    loading...
+                </template>
                 <img :src="file.url" width="100" height="100" alt="">
                 {{ file.name }}
                 <button @click="onRemoveFile(file)">删除</button>
@@ -71,21 +74,40 @@
           this.$refs.temp.append(input)
           return input
         },
-        uploadFile(file) {
-          let {size, type, name} = file
+        uploadFile(rawfile) {
+          let {size, type, name} = rawfile
+          let newName = this.generateName(name)
+          this.beforeUploadFile(rawfile, newName)
           let formData = new FormData();
-          formData.append(this.name, file);
+          formData.append(this.name, rawfile);
           this.doUploadFile(formData, (response)=>{
             let url = this.parseResponse(response)
-            while(this.fileList.filter(f => f.name === name).length > 0){
-              let dotIndex = name.lastIndexOf('.')
-              let nameWidthoutExtension = name.substring(0, dotIndex)
-              let extension = name.substring(dotIndex)
-              name = nameWidthoutExtension + '(1)' + extension
-            }
-            this.$emit('update:fileList', [...this.fileList, { name, size, type, url}])
+            this.afterUploadFile(newName, url)
           })
 
+        },
+        beforeUploadFile(rawfile){
+          let {name, size, type} = rawfile
+          this.$emit('update:fileList', [...this.fileList, {name, type, size, status:'uploading'}])
+        },
+        afterUploadFile(newName, url) {
+          let file = this.fileList.filter(f => f.name === newName)[0]
+          let index = this.fileList.indexOf(file)
+          let copy = JSON.parse(JSON.stringify(file))
+          copy.url = url
+          copy.status = 'success'
+          let fileListCopy = [...this.fileList]
+          fileListCopy.splice(index, 1, copy)
+          this.$emit('update:fileList', fileListCopy)
+        },
+        generateName(name){
+          while(this.fileList.filter(f => f.name === name).length > 0){
+            let dotIndex = name.lastIndexOf('.')
+            let nameWidthoutExtension = name.substring(0, dotIndex)
+            let extension = name.substring(dotIndex)
+            name = nameWidthoutExtension + '(1)' + extension
+          }
+          return name
         },
         doUploadFile(formData, callback){
           var xhr = new XMLHttpRequest()
