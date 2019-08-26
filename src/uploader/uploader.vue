@@ -10,6 +10,7 @@
             <li v-for="file in fileList" :key="file.name">
                 <img :src="file.url" width="100" height="100" alt="">
                 {{ file.name }}
+                <button @click="onRemoveFile(file)">删除</button>
             </li>
         </ol>
     </div>
@@ -46,6 +47,15 @@
         }
       },
       methods: {
+        onRemoveFile(file) {
+            let answer = window.confirm('您确定删除这张图片么')
+          if(answer){
+            let copy = [...this.fileList]
+            let index = copy.indexOf(file)
+            copy.splice(index, 1)
+            this.$emit('update:fileList', copy)
+          }
+        },
         onClickUploader() {
           let input = this.createInput()
           input.addEventListener('change', () => {
