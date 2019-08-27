@@ -83,12 +83,27 @@
           this.doUploadFile(formData, (response)=>{
             let url = this.parseResponse(response)
             this.afterUploadFile(newName, url)
+          }, () => {
+            this.uploadError(newName)
           })
 
         },
-        beforeUploadFile(rawfile){
+        doUploadFile(formData, success, fail){
+          var xhr = new XMLHttpRequest()
+          xhr.open(this.methods, this.action)
+          xhr.onload = () => {
+            if(Math.random() > 0.5){
+              success(xhr.response)
+            }else{
+              fail()
+            }
+
+          }
+          xhr.send(formData)
+        },
+        beforeUploadFile(rawfile, newName){
           let {name, size, type} = rawfile
-          this.$emit('update:fileList', [...this.fileList, {name, type, size, status:'uploading'}])
+          this.$emit('update:fileList', [...this.fileList, {name: newName, type, size, status:'uploading'}])
         },
         afterUploadFile(newName, url) {
           let file = this.fileList.filter(f => f.name === newName)[0]
@@ -96,6 +111,15 @@
           let copy = JSON.parse(JSON.stringify(file))
           copy.url = url
           copy.status = 'success'
+          let fileListCopy = [...this.fileList]
+          fileListCopy.splice(index, 1, copy)
+          this.$emit('update:fileList', fileListCopy)
+        },
+        uploadError(newName){
+          let file = this.fileList.filter(f => f.name === newName)[0]
+          let index = this.fileList.indexOf(file)
+          let copy = JSON.parse(JSON.stringify(file))
+          copy.status = 'fail'
           let fileListCopy = [...this.fileList]
           fileListCopy.splice(index, 1, copy)
           this.$emit('update:fileList', fileListCopy)
@@ -109,14 +133,7 @@
           }
           return name
         },
-        doUploadFile(formData, callback){
-          var xhr = new XMLHttpRequest()
-          xhr.open(this.methods, this.action)
-          xhr.onload = () => {
-            callback(xhr.response)
-          }
-          xhr.send(formData)
-        }
+
       }
     }
 </script>
