@@ -6,22 +6,31 @@
         <div class="temp" ref="temp">
 
         </div>
-        <ol>
-            <li v-for="file in fileList" :key="file.name">
-                <template v-if="file.status === 'uploading'">
-                    loading...
+        <ol class="t-uploader-list">
+            <li v-for="file in fileList" :key="file.name" class="t-uploader-list-item">
+                <template v-if="file.status === 'uploading'" >
+                    <t-icon class="spin" name="loading"></t-icon>
                 </template>
-                <img :src="file.url" width="100" height="100" alt="">
-                {{ file.name }}
-                <button @click="onRemoveFile(file)">删除</button>
+                <template v-else-if="file.status === 'success'">
+                    <img class="t-uploader-image" :src="file.url" width="32" height="32" alt="">
+                    {{file.name}}
+                </template>
+                <template v-else>
+                    <img class="t-uploader-defaultImage t-uploader-image">
+                    {{file.name}}
+                </template>
+                <t-button @click="onRemoveFile(file)" class="t-uploader-remove">x</t-button>
             </li>
         </ol>
     </div>
 
 </template>
 <script>
+    import TButton from '../button/button'
+    import TIcon from '../icon'
     export default {
       name: 'TheOnenUploader',
+      components:{ TButton, TIcon},
       props: {
         name: {
           type: String,
@@ -138,11 +147,37 @@
     }
 </script>
 <style scoped type="text/scss" lang="scss">
+    @import '../../styles/var';
     .t-uploader{
         .temp{
             width: 0;
             height: 0;
             overflow: hidden;
+        }
+        &-defaultImage{
+            width: 32px;
+            height: 32px;
+        }
+        &-image{
+            margin-right: 5px;
+        }
+        &-list{
+            > li{
+                display: flex;
+                align-items: center;
+                border: 1px solid darken($grey, 10%);
+                padding: 2px;
+            }
+            &-item{
+                margin: 20px 0 ;
+            }
+
+        }
+        &-remove{
+            margin-left: auto;
+        }
+        .spin{
+            @include spin;
         }
     }
 </style>
