@@ -51,6 +51,9 @@
         fileList: {
           type: Array,
           default: () => []
+        },
+        sizeLimit: {
+          type:Number
         }
       },
       data(){
@@ -94,11 +97,13 @@
             this.afterUploadFile(newName, url)
           }, (response, status) => {
             this.uploadError(newName)
+            let error = ''
             if(status === 0){
-              this.$emit('error', '网络连接中断')
+              error = '网络无法连接'
             }else{
-              this.$emit('error', response)
+              error = response
             }
+            this.$emit('error', error)
           })
 
         },
