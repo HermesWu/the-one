@@ -81,6 +81,7 @@
           input.click()
         },
         createInput(){
+          this.$refs.temp.innerHTML = ''
           let input = document.createElement('input')
           input.type = 'file'
           this.$refs.temp.append(input)
