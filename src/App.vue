@@ -1,10 +1,12 @@
 <template>
   <div id="app">
 
-    <!-- page 分页 demo-->
-    <div style="margin: 20px">
-      <t-pager :totalPage="20" :currentPage.sync="currentPage" />
-    </div>
+<!--    <t-table style="margin-top: 30px;" :columns="columns" :dataSource="dataSource" @update:orderBy="x" :selected-items.sync="selected" :height="400" :orderBy.sync="orderBy" bordered compact></t-table>-->
+<!--    &lt;!&ndash; page 分页 demo&ndash;&gt;-->
+<!--    <div style="margin: 20px">-->
+<!--      <t-pager :totalPage="20" :currentPage.sync="currentPage" />-->
+<!--    </div>-->
+<!--    <p>当前选择页数：{{ currentPage }}</p>-->
 
     <!--nav 导航 demo-->
 
@@ -68,8 +70,11 @@
 
       <!--<img alt="Vue logo" src="./assets/logo.png">-->
       <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
-      <!--<t-cascader :source.sync="source" :selected.sync="selected" height="200px" :loadDate="loadDate"></t-cascader>-->
-      <!--<div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px; padding:5px;">-->
+    <!--{{selected2 &&selected2[0]&& selected2[0].name || '空'}}-->
+    <!--{{selected2 &&selected2[1]&& selected2[1].name || '空'}}-->
+    <!--{{selected2 &&selected2[2]&& selected2[2].name || '空'}}-->
+      <!--<t-cascader :source.sync="source2" :selected.sync="selected2" height="200px" ></t-cascader>-->
+      <!--&lt;!&ndash;<div style=" border: 1px solid black; margin-bottom: 30px; min-height: 100px; padding:5px;">&ndash;&gt;-->
 
         <!--{{selected &&selected[0]&& selected[0].name || '空'}}-->
         <!--{{selected &&selected[1]&& selected[1].name || '空'}}-->
@@ -289,7 +294,58 @@
     },
     data() {
       return {
+        fileList: [], // uploader
+        error:''
+
         // selected: [], // cascader
+        // source: [], //cascader
+        // selected2: [],
+        // source2 : [
+        //     {
+        //         name:'浙江',
+        //         children:[
+        //             {
+        //                 name: '杭州',
+        //                 children:[
+        //                     {name:'上城'},
+        //                     {name: '下城'},
+        //                     {name: '江干'}
+        //                 ]
+        //
+        //             },
+        //             {name: '嘉兴'},
+        //             {name: '湖州'}
+        //         ]
+        //     },
+        //     {
+        //         name:'福建',
+        //         children:[
+        //             {
+        //                 name: '福州',
+        //                 children:[
+        //                     {name: '鼓楼区'},
+        //                     {name: '台江区'},
+        //                     {name: '仓山区'}
+        //                 ]
+        //             },
+        //
+        //         ]
+        //     },
+        //     {
+        //         name:'安徽',
+        //         children:[
+        //             {
+        //                 name: '合肥',
+        //                 children:[
+        //                     {name: '瑶海'},
+        //                     {name: '庐阳'},
+        //                     {name: '蜀山'}
+        //                 ]
+        //             },
+        //
+        //         ]
+        //     }
+        // ],
         // loading1: false,
         // loading2: true,
         // loading3: false,
@@ -302,6 +358,19 @@
       }
     },
     methods: {
+      parseResponse(response){
+        let object = JSON.parse(response)
+        let url = `http://127.0.0.1:3000/preview/${object.id}`
+        return url
+      },
+      x(){
+        console.log('hi')
+        this.loading = true
+        setTimeout(() => {
+          this.dataSource = this.dataSource.sort((a, b) => a.score - b.score)
+          this.loading = false
+        }, 1000)
+      },
       showToast(s) {
         this.$toast(`你的智商值为${parseInt(Math.random() * 100)}, 你的智商需要充值！`,
           {

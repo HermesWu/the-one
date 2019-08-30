@@ -89,7 +89,7 @@
         uploadFile(rawfile) {
           let {size, type, name} = rawfile
           let newName = this.generateName(name)
-          this.beforeUploadFile(rawfile, newName)
+          if(!this.beforeUploadFile(rawfile, newName)){ return }
           let formData = new FormData();
           formData.append(this.name, rawfile);
           this.doUploadFile(formData, (response)=>{
@@ -120,7 +120,13 @@
         },
         beforeUploadFile(rawfile, newName){
           let {name, size, type} = rawfile
-          this.$emit('update:fileList', [...this.fileList, {name: newName, type, size, status:'uploading'}])
+          if(size > this.sizeLimit){
+            this.$emit('error', `文件不能大于${this.sizeLimit}字节`)
+            return false
+          }else{
+            this.$emit('update:fileList', [...this.fileList, {name: newName, type, size, status:'uploading'}])
+            return true
+          }
         },
         afterUploadFile(newName, url) {
           let file = this.fileList.filter(f => f.name === newName)[0]
