@@ -92,8 +92,13 @@
           this.doUploadFile(formData, (response)=>{
             let url = this.parseResponse(response)
             this.afterUploadFile(newName, url)
-          }, () => {
+          }, (response, status) => {
             this.uploadError(newName)
+            if(status === 0){
+              this.$emit('error', '网络连接中断')
+            }else{
+              this.$emit('error', response)
+            }
           })
 
         },
@@ -101,12 +106,10 @@
           var xhr = new XMLHttpRequest()
           xhr.open(this.methods, this.action)
           xhr.onload = () => {
-            if(Math.random() > 0.5){
               success(xhr.response)
-            }else{
-              fail()
-            }
-
+          }
+          xhr.onerror = () => {
+            fail(xhr, xhr.status)
           }
           xhr.send(formData)
         },
