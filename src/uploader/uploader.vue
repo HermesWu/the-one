@@ -53,7 +53,8 @@
           default: () => []
         },
         sizeLimit: {
-          type:Number
+          type:Number,
+          default: Number.MAX_SAFE_INTEGER
         }
       },
       data(){
@@ -73,9 +74,10 @@
         },
         onClickUploader() {
           let input = this.createInput()
+          input.multiple = true
           input.addEventListener('change', () => {
-            let file = input.files[0]
-            this.uploadFile(file)
+            let files = input.files
+            this.uploadFiles(files)
             input.remove()
           })
           input.click()
@@ -87,12 +89,20 @@
           this.$refs.temp.append(input)
           return input
         },
-        uploadFile(rawfile) {
-          let {size, type, name} = rawfile
-          let newName = this.generateName(name)
-          if(!this.beforeUploadFile(rawfile, newName)){ return }
+        uploadFiles(rawFiles) {
+          let newNames = []
+          for(let i = 0; i < rawFiles.length; i++) {
+            let {size, type, name} = rawFiles[i]
+            newNames[i] = this.generateName(name)
+          }
+          if(!this.beforeUploadFile(rawFiles, newNames)){ return }
+          for(let i = 0; i < rawFiles.length; i++) {
+            this.uploadSingleFile(rawFiles[i], newNames[i])
+          }
+        },
+        uploadSingleFile(rawFile, newName){
           let formData = new FormData();
-          formData.append(this.name, rawfile);
+          formData.append(this.name, rawFile);
           this.doUploadFile(formData, (response)=>{
             let url = this.parseResponse(response)
             this.afterUploadFile(newName, url)
@@ -106,7 +116,6 @@
             }
             this.$emit('error', error)
           })
-
         },
         doUploadFile(formData, success, fail){
           var xhr = new XMLHttpRequest()
@@ -119,18 +128,28 @@
           }
           xhr.send(formData)
         },
-        beforeUploadFile(rawfile, newName){
-          let {name, size, type} = rawfile
-          if(size > this.sizeLimit){
-            this.$emit('error', `文件不能大于${this.sizeLimit}字节`)
-            return false
-          }else{
-            this.$emit('update:fileList', [...this.fileList, {name: newName, type, size, status:'uploading'}])
-            return true
+        beforeUploadFile(rawfiles, newNames){
+          rawfiles = Array.from(rawfiles)
+          for(let i = 0; i < rawfiles.length; i++){
+            let {name, size, type} = rawfiles[i]
+            if(size > this.sizeLimit){
+              this.$emit('error', `文件不能大于${this.sizeLimit}字节`)
+              return false
+            }
           }
+          let tempArray = rawfiles.map((rawfile,i) => {
+            let {type, size} = rawfile
+            return {
+              name: newNames[i], type, size, status:'uploading'
+            }
+          })
+        this.$emit('update:fileList', [...this.fileList, ...tempArray])
+        return true
         },
         afterUploadFile(newName, url) {
           let file = this.fileList.filter(f => f.name === newName)[0]
+          // console.log('file')
+          // console.log(file)
           let index = this.fileList.indexOf(file)
           let copy = JSON.parse(JSON.stringify(file))
           copy.url = url
