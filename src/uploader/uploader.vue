@@ -92,7 +92,7 @@
         uploadFiles(rawFiles) {
           let newNames = []
           for(let i = 0; i < rawFiles.length; i++) {
-            let {size, type, name} = rawFiles[i]
+            let {name} = rawFiles[i]
             newNames[i] = this.generateName(name)
           }
           if(!this.beforeUploadFile(rawFiles, newNames)){ return }
@@ -131,7 +131,7 @@
         beforeUploadFile(rawfiles, newNames){
           rawfiles = Array.from(rawfiles)
           for(let i = 0; i < rawfiles.length; i++){
-            let {name, size, type} = rawfiles[i]
+            let {size} = rawfiles[i]
             if(size > this.sizeLimit){
               this.$emit('error', `文件不能大于${this.sizeLimit}字节`)
               return false
@@ -148,8 +148,6 @@
         },
         afterUploadFile(newName, url) {
           let file = this.fileList.filter(f => f.name === newName)[0]
-          // console.log('file')
-          // console.log(file)
           let index = this.fileList.indexOf(file)
           let copy = JSON.parse(JSON.stringify(file))
           copy.url = url
