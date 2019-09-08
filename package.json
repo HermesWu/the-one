@@ -1,11 +1,11 @@
 {
   "name": "the-onen",
-  "version": "0.2.1",
+  "version": "0.3",
   "description": "HermesWu",
   "main": "./dist/main.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name theonen src/index.js",
     "test": "karma start --single-run",
     "test:unit": "karma start",
     "test:unit:old": "vue-cli-service test:unit",
