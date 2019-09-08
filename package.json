@@ -1,8 +1,8 @@
 {
   "name": "the-onen",
-  "version": "0.3",
+  "version": "0.3.0",
   "description": "HermesWu",
-  "main": "./dist/main.js",
+  "main": "dist/theonen.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name theonen src/index.js",
