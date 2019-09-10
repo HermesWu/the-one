@@ -5,7 +5,7 @@
 </template>
 <script>
     export default{
-
+      name:'TheonenHeader'
     }
 </script>
 <style type="text/scss" lang="scss" scoped>

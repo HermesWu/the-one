@@ -5,6 +5,7 @@
 </template>
 <script>
     export default{
+      name:'TheOnenButtonGroup',
         mounted() {
             let name = this.$el.children
             for( let node of name) {

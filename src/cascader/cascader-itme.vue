@@ -21,7 +21,7 @@
 <script>
   import Icon from '../icon'
   export default{
-      name: "cascaderItems",
+      name: "TheonenCascaderItems",
       components:{
         tIcon: Icon
       },
