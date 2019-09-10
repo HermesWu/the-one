@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper" :class="{'error':error}">
+    <div class="t-input-wrapper" :class="{'error':error}">
         <input type="text" :value="value" :disabled="disabled" :readonly="readonly"
                @change="$emit('change', $event.target.value)"
                @input="$emit('input', $event.target.value)"
@@ -38,7 +38,7 @@
 </script>
 <style type="text/scss" lang="scss" scoped>
     @import '../../styles/var';
-    .wrapper{
+    .t-input-wrapper{
         display: inline-flex;
         align-items: center;
         font-size: $font-size;
