@@ -21,11 +21,19 @@ export default {
     copyDate.setFullYear(newYear)
     return copyDate
   },
-  getYearMonthDate
+  getYearMonthDate,
+  range
 }
 function getYearMonthDate(date){
   let year = date.getFullYear()
   let month = date.getMonth()
   let day = date.getDate()
   return [year, month, day]
+}
+function range(start, end){
+  let result = []
+  for(let i = start; i < end; i++){
+    result.push(i)
+  }
+  return result
 }
