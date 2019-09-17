@@ -25,7 +25,14 @@
             <div class="t-date-picker-panels">
               <div class="t-date-picker-pop-content">
                 <template v-if="mode === 'months'">
-                  年和月
+                  <div :class="c('selectMonth')">
+                    <select name="" id="" :value="display.year" @change="onChangeYear">
+                      <option v-for="year in years" :value="year" :key="year">{{year}}</option>
+                    </select>年
+                    <select name="" id="" :value="display.month + 1" @change="onChangeMonth">
+                      <option v-for="month in 12" :value="month">{{month}}</option>
+                    </select>月
+                  </div>
                 </template>
                 <template v-else>
                   <div :class="c('weekdays')">
@@ -65,6 +72,10 @@
     props: {
       value: {
         type: Date
+      },
+      scope:{
+        type: Array,
+        default: () => [new Date(1900, 0, 1), helper.addYear(new Date(), 100)]
       }
     },
     data() {
@@ -133,6 +144,24 @@
         let [year, month] = helper.getYearMonthDate(newDate)
         this.display = {year, month}
       },
+      onChangeYear(e){
+        const year = e.target.value - 0
+        const tempDate = new Date(year, this.display.month)
+        if(tempDate >= this.scope[0] && tempDate <= this.scope[1]){
+          this.display.year = year
+        }else{
+          e.target.value = this.display.year
+        }
+      },
+      onChangeMonth(e){
+        const month = e.target.value - 0
+        const tempDate = new Date(this.display.year, month)
+        if(tempDate >= this.scope[0] && tempDate <= this.scope[1]){
+          this.display.month = month - 1
+        }else{
+          e.target.value = this.display.month
+        }
+      }
     },
     computed: {
       visibleDays() {
@@ -146,6 +175,9 @@
         }
         console.log(array)
         return array
+      },
+      years() {
+        return helper.range(this.scope[0].getFullYear(), this.scope[1].getFullYear() + 1)
       }
     }
   }
@@ -160,14 +192,17 @@
       &-pop-nav {
         display: flex;
       }
-      &-pop-content{
-        width: 244px;
-        height: 244px;
-      }
+
       &-yearAndMonth {
         margin: auto;
       }
-
+      &-selectMonth {
+        width: 224px;
+        height: 224px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
       &-cell {
         user-select: none;
         color: #ddd;

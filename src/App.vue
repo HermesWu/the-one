@@ -239,11 +239,15 @@
         <!--<g-button>按钮</g-button>-->
         <!--<g-button icon="settings" :loading="loading1" icon-position="left" @click="loading1 = !loading1">按钮</g-button>-->
         <!--<g-button icon="settings" icon-position="right">按钮</g-button>-->
-        <!--<g-button-group>-->
-          <!--<g-button icon="left">上一页</g-button>-->
-          <!--<g-button> 更多</g-button>-->
-          <!--<g-button icon="right" icon-position="right">下一页</g-button>-->
-        <!--</g-button-group>-->
+<!--        <g-button-group>-->
+<!--          <g-button icon="left">上一页</g-button>-->
+<!--          <g-button> 更多</g-button>-->
+<!--          <g-button icon="right" icon-position="right">下一页</g-button>-->
+<!--        </g-button-group><g-button-group>-->
+<!--          <g-button icon="left">上一页</g-button>-->
+<!--          <g-button> 更多</g-button>-->
+<!--          <g-button icon="right" icon-position="right">下一页</g-button>-->
+<!--        </g-button-group>-->
       <!--</div>-->
 
 
@@ -294,8 +298,9 @@
     },
     data() {
       return {
-        fileList: [], // uploader
-        error:''
+        value: new Date(), // date-picker
+        // fileList: [], // uploader
+        // error:''
 
         // selected: [], // cascader
         // source: [], //cascader
