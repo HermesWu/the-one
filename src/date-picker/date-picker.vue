@@ -41,7 +41,16 @@
                   </span>
                   </div>
                   <div :class="c('row')" v-for="i in 6" :key="i">
-                  <span :class="[c('cell'), {currentMonth: isCurrentMonth(getVisibelDay(i,j))}]" v-for="j in 7" :key="j" @click="onClickCell(getVisibelDay(i, j))">
+                  <span
+                      :class="[
+                        c('cell'),
+                        {currentMonth: isCurrentMonth(getVisibelDay(i,j))},
+                        {selected:isSelected(getVisibelDay(i, j))},
+                        {today:isToday(getVisibelDay(i, j))},
+                      ]"
+                      v-for="j in 7"
+                      :key="j"
+                      @click="onClickCell(getVisibelDay(i, j))">
                       {{getVisibelDay(i, j).getDate()}}
                   </span>
                   </div>
@@ -97,6 +106,16 @@
       isCurrentMonth(date){
         let [year, month] = helper.getYearMonthDate(date)
         return year === this.display.year && month === this.display.month
+      },
+      isSelected(date){
+        let [year, month, day] = helper.getYearMonthDate(date)
+        let [year1, month1, day1] = helper.getYearMonthDate(this.value)
+        return year === year1 && month === month1 && day === day1
+      },
+      isToday(date){
+        let [y, m, d] = helper.getYearMonthDate(date);
+        let [y2, m2, d2] = helper.getYearMonthDate(new Date());
+        return y === y2 && m === m2 && d === d2;
       },
       formattedValue(){
         const [year, month, day] = helper.getYearMonthDate(this.value)
@@ -183,6 +202,7 @@
   }
 </script>
 <style type="text/scss" lang="scss" scoped>
+  @import '../../styles/var';
   .t-date-picker-wrapper {
     /deep/ .t-popover-content-wrapper {
       padding: 0;
@@ -204,10 +224,22 @@
         justify-content: center;
       }
       &-cell {
-        user-select: none;
+        cursor: not-allowed;
         color: #ddd;
+        border-radius: $border-radius;
         &.currentMonth{
           color: #000;
+          &:hover{
+            color: #fff;
+            cursor: pointer;
+            background: $blue;
+          }
+        }
+        &.today {
+          background: $grey;
+        }
+        &.selected{
+          border: 1px solid $blue;
         }
       }
 
