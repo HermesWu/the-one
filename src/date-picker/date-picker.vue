@@ -2,7 +2,7 @@
   <div class="t-date-picker-wrapper">
     <div class="t-date-picker-pop" ref="popoverContainer">
       <t-popover position="bottom" style="border: 1px solid red;" :popoverContainer="popoverContainer" >
-        <t-input type="text" :value="formattedValue()"></t-input>
+        <t-input type="text" :value="formattedValue"></t-input>
 
         <template slot="content">
           <div class="t-date-picker-pop" @selectstart.prevent>
@@ -54,6 +54,8 @@
                       {{getVisibelDay(i, j).getDate()}}
                   </span>
                   </div>
+                  <t-button @click="onClickToday">今天</t-button>
+                  <t-button @click="onClickClear">清除</t-button>
                 </template>
               </div>
             </div>
@@ -69,6 +71,7 @@
   import TIcon from '../icon'
   import TPopover from '../popover/popover'
   import helper from './helper'
+  import TButton from '../button/button'
 
 
   export default {
@@ -76,7 +79,8 @@
     components: {
       TInput,
       TPopover,
-      TIcon
+      TIcon,
+      TButton
     },
     props: {
       value: {
@@ -88,7 +92,7 @@
       }
     },
     data() {
-      let [year, month] = helper.getYearMonthDate(this.value)
+      let [year, month] = helper.getYearMonthDate(this.value || new Date())
       return {
         mode: 'days',
         popoverContainer: null,
@@ -108,6 +112,7 @@
         return year === this.display.year && month === this.display.month
       },
       isSelected(date){
+        if(!this.value){return false}
         let [year, month, day] = helper.getYearMonthDate(date)
         let [year1, month1, day1] = helper.getYearMonthDate(this.value)
         return year === year1 && month === month1 && day === day1
@@ -117,10 +122,7 @@
         let [y2, m2, d2] = helper.getYearMonthDate(new Date());
         return y === y2 && m === m2 && d === d2;
       },
-      formattedValue(){
-        const [year, month, day] = helper.getYearMonthDate(this.value)
-        return `${year}-${month + 1}-${day}`
-      },
+
       getVisibelDay(i, j){
         return this.visibleDays[(i-1)*7+j-1]
       },
@@ -180,6 +182,14 @@
         }else{
           e.target.value = this.display.month
         }
+      },
+      onClickToday(){
+        let [year, month, day] = helper.getYearMonthDate(new Date())
+        this.display = {year, month}
+        this.$emit('input', new Date(year, month, day))
+      },
+      onClickClear(){
+        this.$emit('input', undefined)
       }
     },
     computed: {
@@ -194,6 +204,11 @@
         }
         console.log(array)
         return array
+      },
+      formattedValue(){
+        if(!this.value){return ''}
+        const [year, month, day] = helper.getYearMonthDate(this.value)
+        return `${year}-${month + 1}-${day}`
       },
       years() {
         return helper.range(this.scope[0].getFullYear(), this.scope[1].getFullYear() + 1)
